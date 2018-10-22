@@ -6,8 +6,8 @@ import { PropertiesOfType } from './utils/type-helpers';
 
 export default decoratorWithRequiredParams(function<
   O extends EmberObject,
-  K extends PropertiesOfType<O, (...args: any[]) => any>,
-  OriginalMethod extends Extract<O[K], (...args: any[]) => any>
+  K extends PropertiesOfType<O, (event: Event) => any>,
+  OriginalMethod extends Extract<O[K], (event: Event) => any>
 >(
   target: O,
   _key: K,

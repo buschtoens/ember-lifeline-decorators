@@ -12,9 +12,7 @@ export default function disposable<
 
   if (desc) {
     const originalMethod: OriginalMethod = desc.value;
-    desc.value = function(this: EmberObject) {
-      return registerDisposable(this, originalMethod);
-    };
+    registerDisposable(target, originalMethod);
   }
   return desc;
 }

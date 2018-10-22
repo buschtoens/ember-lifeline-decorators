@@ -1,13 +1,13 @@
 {
   "name": "ember-lifeline-decorators",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Decorators for easily using ember-lifeline",
   "keywords": [
     "ember-addon"
   ],
-  "repository": "",
+  "repository": "buschtoens/ember-lifeline-decorators",
   "license": "MIT",
-  "author": "",
+  "author": "Jan Buschtöns <jan@buschtoens.me> (https://jan.buschtoens.me/)",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -18,13 +18,21 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "test": "ember test",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "prepublishOnly": "ember ts:precompile",
+    "postpublish": "ember ts:clean"
   },
   "dependencies": {
+    "@ember-decorators/utils": "^3.0.0",
     "ember-cli-babel": "^6.16.0"
   },
   "devDependencies": {
     "@ember/optional-features": "^0.6.3",
+    "@types/ember": "^3.0.25",
+    "@types/ember-test-helpers": "^1.0.4",
+    "@types/ember-testing-helpers": "^0.0.3",
+    "@types/ember__test-helpers": "^0.7.6",
+    "@types/rsvp": "^4.0.2",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.1.0",
     "ember-cli": "~3.5.0",
@@ -35,9 +43,11 @@
     "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.1",
+    "ember-cli-typescript": "^1.4.4",
     "ember-cli-uglify": "^2.1.0",
     "ember-disable-prototype-extensions": "^1.1.3",
     "ember-export-application-global": "^2.0.0",
+    "ember-lifeline": "^3.0.8",
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^3.4.1",
@@ -48,12 +58,16 @@
     "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-node": "^7.0.1",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.8.0"
+    "qunit-dom": "^0.8.0",
+    "typescript": "^3.1.3"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
+  },
+  "peerDependencies": {
+    "ember-lifeline": "^3.0.0"
   }
 }

@@ -5,6 +5,6 @@ export function decoratorWithRequiredParams<Args extends any[]>(
     target: EmberObject,
     key: string,
     desc: PropertyDescriptor,
-    ...args: Args
+    args: Args
   ) => PropertyDescriptor
 ): (...args: Args) => MethodDecorator;

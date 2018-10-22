@@ -4,6 +4,11 @@ import { scheduleTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { PropertiesOfType } from './utils/type-helpers';
 
+/**
+ * Scheduling in the `afterRender` queue is bad for performance.
+ *
+ * @see https://github.com/ember-lifeline/ember-lifeline/blob/9842853ae600c0652531962f679a0900ba289eec/addon/run-task.ts#L128-L131
+ */
 type RunLoopQueue = Exclude<EmberRunQueues, 'afterRender'>;
 
 export default decoratorWithRequiredParams(function<

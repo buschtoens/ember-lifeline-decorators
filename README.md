@@ -170,7 +170,7 @@ export default class ExampleComponent extends Component {
 
 #### `@eventListener`
 
-- **`element`**: *`HTMLElement`* — element to register the listener on
+- **`target`**: *`EventTarget`* — target, such as `window` or `HTMLElement`, to register the listener on
 - **`eventName`**: *`string`* — the event to listen for
 - **`options?`**: *`object`* — optional options to pass to `addEventListener`
 

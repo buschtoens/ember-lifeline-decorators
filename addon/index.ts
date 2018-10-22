@@ -99,9 +99,10 @@ export const eventListener = decoratorWithRequiredParams(function(
   target: EmberObject,
   _key: string,
   desc: PropertyDescriptor,
-  [element, eventName, options]: [HTMLElement, string, object?]
+  [element, eventName, options]: [EventTarget, string, object?]
 ) {
   hookDisposablesRunner(target);
+  // @ts-ignore typing is incorrect upstream
   addEventListener(target, element, eventName, desc.value, options);
   return desc;
 });

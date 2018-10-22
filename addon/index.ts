@@ -10,7 +10,7 @@ import {
   runDisposables
 } from 'ember-lifeline';
 
-type RunLoopQueue = 'actions' | 'routerTransitions' | 'render' | 'destroy';
+type RunLoopQueue = Exclude<EmberRunQueues, 'afterRender'>;
 
 const hookedWithDisposables = new WeakSet<EmberObject>();
 
@@ -29,7 +29,7 @@ function hookDisposablesRunner(target: EmberObject) {
 
 export const later = decoratorWithRequiredParams(function(
   target: EmberObject,
-  key: string,
+  _key: string,
   desc: PropertyDescriptor,
   [timeout]: [number]
 ) {
@@ -46,7 +46,7 @@ export const later = decoratorWithRequiredParams(function(
 
 export const schedule = decoratorWithRequiredParams(function(
   target: EmberObject,
-  key: string,
+  _key: string,
   desc: PropertyDescriptor,
   [queue]: [RunLoopQueue]
 ) {
@@ -63,7 +63,7 @@ export const schedule = decoratorWithRequiredParams(function(
 
 export const debounce = decoratorWithRequiredParams(function(
   target: EmberObject,
-  key: string,
+  _key: string,
   desc: PropertyDescriptor,
   [wait, immediate]: [number, boolean]
 ) {
@@ -80,7 +80,7 @@ export const debounce = decoratorWithRequiredParams(function(
 
 export const throttle = decoratorWithRequiredParams(function(
   target: EmberObject,
-  key: string,
+  _key: string,
   desc: PropertyDescriptor,
   [spacing, immediate]: [number, boolean]
 ) {
@@ -97,7 +97,7 @@ export const throttle = decoratorWithRequiredParams(function(
 
 export const eventListener = decoratorWithRequiredParams(function(
   target: EmberObject,
-  key: string,
+  _key: string,
   desc: PropertyDescriptor,
   [element, eventName, options]: [HTMLElement, string, object?]
 ) {
@@ -108,7 +108,7 @@ export const eventListener = decoratorWithRequiredParams(function(
 
 export const disposable = function(
   target: EmberObject,
-  key: string,
+  _key: string,
   desc: PropertyDescriptor
 ) {
   hookDisposablesRunner(target);

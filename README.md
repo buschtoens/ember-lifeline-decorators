@@ -84,6 +84,7 @@ export default class ExampleComponent extends Component {
 #### `@schedule`
 
 - **`queue`**: *`RunLoopQueue`* — the queue to put the method in
+  - `sync`
   - `actions`
   - `routerTransitions`
   - `render`

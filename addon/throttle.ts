@@ -7,7 +7,7 @@ export default decoratorWithRequiredParams(function(
   target: EmberObject,
   _key: string,
   desc: PropertyDescriptor,
-  [spacing, immediate]: [number, boolean]
+  [spacing, immediate = true]: [number, boolean?]
 ) {
   hookDisposablesRunner(target);
 

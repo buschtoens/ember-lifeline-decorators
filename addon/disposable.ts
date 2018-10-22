@@ -1,16 +1,17 @@
 import EmberObject from '@ember/object';
 import { registerDisposable } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
+import { PropertiesOfType } from './utils/type-helpers';
 
-export default function(
-  target: EmberObject,
-  _key: string,
-  desc: PropertyDescriptor
-) {
+export default function disposable<
+  O extends EmberObject,
+  K extends PropertiesOfType<O, () => any>,
+  OriginalMethod extends Extract<O[K], () => any>
+>(target: O, _key: K, desc: PropertyDescriptor) {
   hookDisposablesRunner(target);
 
   if (desc) {
-    const originalMethod = desc.value;
+    const originalMethod: OriginalMethod = desc.value;
     desc.value = function(this: EmberObject) {
       return registerDisposable(this, originalMethod);
     };

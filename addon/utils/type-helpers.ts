@@ -1,4 +1,3 @@
-
 /**
  * A constructor function / class basically.
  */

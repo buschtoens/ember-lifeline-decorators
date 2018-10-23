@@ -1,10 +1,10 @@
 import EmberObject from '@ember/object';
-import { module, test } from 'qunit';
+import { module, skip } from 'qunit';
 import { debounce } from 'ember-lifeline-decorators';
 import delay from 'delay';
 
 module('@debounce', function() {
-  test('can decorate methods', async function(assert) {
+  skip('can decorate methods', async function(assert) {
     assert.expect(4);
 
     let runCount = 0;

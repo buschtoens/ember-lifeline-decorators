@@ -13,12 +13,18 @@ export default decoratorWithRequiredParams(function<
   target: O,
   _key: K,
   desc: PropertyDescriptor,
-  [spacing, immediate = true]: [number, boolean?]
+  [spacing, _immediate = true]: [number, boolean?]
 ) {
   if (desc) {
     const originalMethod: OriginalMethod = desc.value;
-    desc.value = function(this: O, ...args: Parameters<O>) {
-      return throttleTask(this, originalMethod.bind(this, ...args), spacing, immediate);
+    desc.value = function(this: O, ...args: Parameters<OriginalMethod>) {
+      return throttleTask(
+        this,
+        originalMethod.bind(this, ...args),
+        spacing
+        // @TODO: https://github.com/ember-lifeline/ember-lifeline/issues/133
+        // immediate
+      );
     };
     afterInit(target, function() {
       hookDisposablesRunner(this);

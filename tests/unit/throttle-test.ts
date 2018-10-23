@@ -2,7 +2,7 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { throttle } from 'ember-lifeline-decorators';
 
-module('@throttle', function(hooks) {
+module('@throttle', function() {
   test('can decorate methods', function(assert) {
     assert.expect(4);
 

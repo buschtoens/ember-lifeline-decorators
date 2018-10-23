@@ -2,7 +2,7 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { debounce } from 'ember-lifeline-decorators';
 
-module('@debounce', function(hooks) {
+module('@debounce', function() {
   test('can decorate methods', function(assert) {
     assert.expect(4);
 

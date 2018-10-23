@@ -2,7 +2,7 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { disposable } from 'ember-lifeline-decorators';
 
-module('@disposable', function(hooks) {
+module('@disposable', function() {
   test('can decorate methods', function(assert) {
     assert.expect(3);
 

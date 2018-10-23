@@ -2,7 +2,7 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { schedule } from 'ember-lifeline-decorators';
 
-module('@schedule', function(hooks) {
+module('@schedule', function() {
   test('can decorate methods', function(assert) {
     assert.expect(4);
 

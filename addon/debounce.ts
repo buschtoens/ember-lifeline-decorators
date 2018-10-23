@@ -19,7 +19,14 @@ export default decoratorWithRequiredParams(function<
   if (desc) {
     const originalMethod: OriginalMethod = desc.value;
     desc.value = function(this: O, ...args: Parameters<OriginalMethod>) {
-      return debounceTask(this, originalMethod, ...args, wait, immediate);
+      return debounceTask(
+        this,
+        // @ts-ignore https://github.com/ember-lifeline/ember-lifeline/pull/248
+        originalMethod,
+        ...args,
+        wait,
+        immediate
+      );
     };
   }
   return desc;

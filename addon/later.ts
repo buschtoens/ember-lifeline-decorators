@@ -9,7 +9,12 @@ export default decoratorWithRequiredParams(function<
   O extends EmberObject,
   K extends PropertiesOfType<O, (...args: any[]) => any>,
   OriginalMethod extends Extract<O[K], (...args: any[]) => any>
->(target: O, _key: K, desc: PropertyDescriptor, [timeout]: [number]) {
+>(
+  target: O,
+  _key: K,
+  desc: PropertyDescriptor,
+  [timeout]: [number]
+): PropertyDescriptor {
   if (desc) {
     const originalMethod: OriginalMethod = desc.value;
     desc.value = function(this: O, ...args: Parameters<OriginalMethod>) {

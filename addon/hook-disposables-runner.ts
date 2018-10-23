@@ -3,7 +3,7 @@ import { runDisposables } from 'ember-lifeline';
 
 const hookedWithDisposables = new WeakSet<EmberObject>();
 
-export default function hookDisposablesRunner(target: EmberObject) {
+export default function hookDisposablesRunner(target: EmberObject): void {
   if (hookedWithDisposables.has(target)) return;
   hookedWithDisposables.add(target);
 

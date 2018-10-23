@@ -13,7 +13,7 @@ export default decoratorWithRequiredParams(function<
   _key: K,
   desc: PropertyDescriptor,
   [wait, immediate = false]: [number, boolean?]
-) {
+): PropertyDescriptor {
   hookDisposablesRunner(target);
 
   if (desc) {

@@ -21,7 +21,7 @@ export default decoratorWithRequiredParams(function<
   _key: K,
   desc: PropertyDescriptor,
   [queue]: [RunLoopQueue]
-) {
+): PropertyDescriptor {
   if (desc) {
     const originalMethod: OriginalMethod = desc.value;
     desc.value = function(this: O, ...args: Parameters<OriginalMethod>) {

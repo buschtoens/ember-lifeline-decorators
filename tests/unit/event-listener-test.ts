@@ -14,6 +14,7 @@ module('@eventListener', function() {
       @eventListener(window, 'click')
       doStuff(arg: MouseEvent) {
         runCount++;
+        // eslint-disable-next-line typescript/no-use-before-define
         assert.equal(this, obj, 'context is correct');
         runArg = arg;
       }
@@ -29,6 +30,7 @@ module('@eventListener', function() {
 
     assert.equal(runCount, 1, 'should have run');
     assert.ok(
+      // eslint-disable-next-line typescript/no-non-null-assertion
       runArg! instanceof MouseEvent,
       'should pass the event to the hook'
     );

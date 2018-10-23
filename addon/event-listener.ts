@@ -14,7 +14,7 @@ export default decoratorWithRequiredParams(function<
   _key: K,
   desc: PropertyDescriptor,
   [eventTarget, eventName, options]: [EventTarget, string, object?]
-) {
+): PropertyDescriptor {
   afterInit(target, function() {
     hookDisposablesRunner(this);
     addEventListener(

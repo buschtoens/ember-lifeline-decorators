@@ -8,7 +8,7 @@ export default function disposable<
   O extends EmberObject,
   K extends PropertiesOfType<O, () => any>,
   OriginalMethod extends Extract<O[K], () => any>
->(target: O, _key: K, desc: PropertyDescriptor) {
+>(target: O, _key: K, desc: PropertyDescriptor): PropertyDescriptor {
   if (desc) {
     const originalMethod: OriginalMethod = desc.value;
     afterInit(target, function() {

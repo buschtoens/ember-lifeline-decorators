@@ -14,6 +14,7 @@ module('@debounce', function() {
       @debounce(5)
       doStuff(arg: string) {
         runCount++;
+        // eslint-disable-next-line typescript/no-use-before-define
         assert.equal(this, obj, 'context is correct');
         runArg = arg;
       }
@@ -30,6 +31,7 @@ module('@debounce', function() {
     await delay(10);
 
     assert.equal(runCount, 1, 'should have run only once');
+    // eslint-disable-next-line typescript/no-non-null-assertion
     assert.equal(runArg!, 'arg3', 'should run the task with the last arg');
   });
 

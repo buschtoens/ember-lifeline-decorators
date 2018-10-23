@@ -3,6 +3,7 @@ import EmberObject from '@ember/object';
 import { scheduleTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { PropertiesOfType } from './utils/type-helpers';
+import afterInit from './utils/after-init';
 
 /**
  * Scheduling in the `afterRender` queue is bad for performance.
@@ -21,13 +22,14 @@ export default decoratorWithRequiredParams(function<
   desc: PropertyDescriptor,
   [queue]: [RunLoopQueue]
 ) {
-  hookDisposablesRunner(target);
-
   if (desc) {
     const originalMethod: OriginalMethod = desc.value;
     desc.value = function(this: O, ...args: Parameters<OriginalMethod>) {
       return scheduleTask(this, queue, originalMethod, ...args);
     };
+    afterInit(target, function() {
+      hookDisposablesRunner(this);
+    });
   }
   return desc;
 });

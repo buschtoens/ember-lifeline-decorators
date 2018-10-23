@@ -3,6 +3,7 @@ import EmberObject from '@ember/object';
 import { addEventListener } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { PropertiesOfType } from './utils/type-helpers';
+import afterInit from './utils/after-init';
 
 export default decoratorWithRequiredParams(function<
   O extends EmberObject,
@@ -14,14 +15,16 @@ export default decoratorWithRequiredParams(function<
   desc: PropertyDescriptor,
   [eventTarget, eventName, options]: [EventTarget, string, object?]
 ) {
-  hookDisposablesRunner(target);
-  addEventListener(
-    target,
-    // @ts-ignore https://github.com/ember-lifeline/ember-lifeline/pull/249
-    eventTarget,
-    eventName,
-    desc.value as OriginalMethod,
-    options
-  );
+  afterInit(target, function() {
+    hookDisposablesRunner(this);
+    addEventListener(
+      this,
+      // @ts-ignore https://github.com/ember-lifeline/ember-lifeline/pull/249
+      eventTarget,
+      eventName,
+      desc.value as OriginalMethod,
+      options
+    );
+  });
   return desc;
 });

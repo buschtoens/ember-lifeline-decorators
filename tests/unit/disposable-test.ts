@@ -1,9 +1,11 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { disposable } from 'ember-lifeline-decorators';
-import delay from 'delay';
+import inRunLoop, { next } from 'dummy/tests/helpers/in-run-loop';
 
-module('@disposable', function() {
+module('@disposable', function(hooks) {
+  inRunLoop(hooks);
+
   test('can decorate methods', async function(assert) {
     assert.expect(3);
 
@@ -24,7 +26,7 @@ module('@disposable', function() {
 
     obj.destroy();
 
-    await delay(10);
+    next();
 
     assert.equal(runCount, 1, 'should have run');
   });

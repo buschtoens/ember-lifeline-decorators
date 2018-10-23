@@ -2,9 +2,12 @@ import EmberObject from '@ember/object';
 import { module, skip } from 'qunit';
 import { debounce } from 'ember-lifeline-decorators';
 import delay from 'delay';
+import inRunLoop from 'dummy/tests/helpers/in-run-loop';
 
-module('@debounce', function() {
-  skip('can decorate methods', async function(assert) {
+module('@debounce', function(hooks) {
+  inRunLoop(hooks);
+
+  skip('can decorate methods', async function (assert) {
     assert.expect(4);
 
     let runCount = 0;

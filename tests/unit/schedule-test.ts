@@ -1,9 +1,11 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { schedule } from 'ember-lifeline-decorators';
-import delay from 'delay';
+import inRunLoop, { next } from 'dummy/tests/helpers/in-run-loop';
 
-module('@schedule', function() {
+module('@schedule', function(hooks) {
+  inRunLoop(hooks);
+
   test('can decorate methods', async function(assert) {
     assert.expect(4);
 
@@ -26,7 +28,7 @@ module('@schedule', function() {
 
     assert.equal(runCount, 0, 'should not have run');
 
-    await delay(10);
+    next();
 
     assert.equal(runCount, 1, 'should have run');
     // eslint-disable-next-line typescript/no-non-null-assertion

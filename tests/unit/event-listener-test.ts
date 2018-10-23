@@ -1,9 +1,11 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { eventListener } from 'ember-lifeline-decorators';
-import delay from 'delay';
+import inRunLoop, { next } from 'dummy/tests/helpers/in-run-loop';
 
-module('@eventListener', function() {
+module('@eventListener', function(hooks) {
+  inRunLoop(hooks);
+
   test('can decorate methods', async function(assert) {
     assert.expect(4);
 
@@ -26,7 +28,7 @@ module('@eventListener', function() {
 
     document.body.click();
 
-    await delay(10);
+    next();
 
     assert.equal(runCount, 1, 'should have run');
     assert.ok(

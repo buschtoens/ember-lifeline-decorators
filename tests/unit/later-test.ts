@@ -2,8 +2,11 @@ import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { later } from 'ember-lifeline-decorators';
 import delay from 'delay';
+import inRunLoop from 'dummy/tests/helpers/in-run-loop';
 
-module('@later', function() {
+module('@later', function(hooks) {
+  inRunLoop(hooks);
+
   test('can decorate methods', async function(assert) {
     assert.expect(4);
 

@@ -2,8 +2,11 @@ import EmberObject from '@ember/object';
 import { module, skip } from 'qunit';
 import { throttle } from 'ember-lifeline-decorators';
 import delay from 'delay';
+import inRunLoop from 'dummy/tests/helpers/in-run-loop';
 
-module('@throttle', function() {
+module('@throttle', function(hooks) {
+  inRunLoop(hooks);
+
   skip('can decorate methods', async function(assert) {
     assert.expect(4);
 

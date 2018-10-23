@@ -20,6 +20,7 @@ module.exports = {
   },
   rules: {
     'require-jsdoc': 'off',
+    'valid-jsdoc': 'off',
     'typescript/explicit-member-accessibility': 'off'
   },
   overrides: [

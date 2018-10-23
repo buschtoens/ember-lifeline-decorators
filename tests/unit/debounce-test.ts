@@ -7,7 +7,7 @@ import inRunLoop from 'dummy/tests/helpers/in-run-loop';
 module('@debounce', function(hooks) {
   inRunLoop(hooks);
 
-  skip('can decorate methods', async function (assert) {
+  skip('can decorate methods', async function(assert) {
     assert.expect(4);
 
     let runCount = 0;

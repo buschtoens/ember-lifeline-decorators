@@ -1,12 +1,12 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { eventListener } from 'ember-lifeline-decorators';
+import delay from 'delay';
 
 module('@eventListener', function() {
-  test('can decorate methods', function(assert) {
+  test('can decorate methods', async function(assert) {
     assert.expect(4);
 
-    let done = assert.async();
     let runCount = 0;
     let runArg: MouseEvent;
 
@@ -25,10 +25,12 @@ module('@eventListener', function() {
 
     document.body.click();
 
-    window.setTimeout(() => {
-      assert.equal(runCount, 1, 'should have run');
-      assert.ok(runArg instanceof MouseEvent, 'should pass the event to the hook');
-      done();
-    }, 10);
+    await delay(10);
+
+    assert.equal(runCount, 1, 'should have run');
+    assert.ok(
+      runArg! instanceof MouseEvent,
+      'should pass the event to the hook'
+    );
   });
 });

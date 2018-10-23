@@ -1,12 +1,12 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { schedule } from 'ember-lifeline-decorators';
+import delay from 'delay';
 
 module('@schedule', function() {
-  test('can decorate methods', function(assert) {
+  test('can decorate methods', async function(assert) {
     assert.expect(4);
 
-    let done = assert.async();
     let runCount = 0;
     let runArg: string;
 
@@ -25,11 +25,10 @@ module('@schedule', function() {
 
     assert.equal(runCount, 0, 'should not have run');
 
-    window.setTimeout(() => {
-      assert.equal(runCount, 1, 'should have run');
-      assert.equal(runArg, 'arg1', 'should run the task with the arg');
-      done();
-    }, 10);
+    await delay(10);
+
+    assert.equal(runCount, 1, 'should have run');
+    assert.equal(runArg!, 'arg1', 'should run the task with the arg');
   });
 
   // test('debounceTask can be canceled', function(assert) {

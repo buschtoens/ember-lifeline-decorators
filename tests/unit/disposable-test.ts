@@ -1,12 +1,12 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { disposable } from 'ember-lifeline-decorators';
+import delay from 'delay';
 
 module('@disposable', function() {
-  test('can decorate methods', function(assert) {
+  test('can decorate methods', async function(assert) {
     assert.expect(3);
 
-    let done = assert.async();
     let runCount = 0;
 
     class TestObject extends EmberObject {
@@ -23,9 +23,8 @@ module('@disposable', function() {
 
     obj.destroy();
 
-    window.setTimeout(() => {
-      assert.equal(runCount, 1, 'should have run');
-      done();
-    }, 10);
+    await delay(10);
+
+    assert.equal(runCount, 1, 'should have run');
   });
 });

@@ -1,12 +1,12 @@
 import EmberObject from '@ember/object';
 import { module, test } from 'qunit';
 import { debounce } from 'ember-lifeline-decorators';
+import delay from 'delay';
 
 module('@debounce', function() {
-  test('can decorate methods', function(assert) {
+  test('can decorate methods', async function(assert) {
     assert.expect(4);
 
-    let done = assert.async();
     let runCount = 0;
     let runArg: string;
 
@@ -27,11 +27,10 @@ module('@debounce', function() {
 
     assert.equal(runCount, 0, 'should not have run');
 
-    window.setTimeout(() => {
-      assert.equal(runCount, 1, 'should have run only once');
-      assert.equal(runArg, 'arg3', 'should run the task with the last arg');
-      done();
-    }, 10);
+    await delay(10);
+
+    assert.equal(runCount, 1, 'should have run only once');
+    assert.equal(runArg!, 'arg3', 'should run the task with the last arg');
   });
 
   // test('debounceTask can be canceled', function(assert) {

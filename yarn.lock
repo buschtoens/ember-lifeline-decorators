@@ -591,10 +591,10 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@ember-decorators/utils@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-3.0.0.tgz#f8e82ead2c75a8eaf2cef5b1811ab54fcb28bcee"
-  integrity sha512-ghvNpiS9p8y/3whKB5J8PK2ESXeyk4oKYgJHyks8799lgi2MgbFeFyls6weJNKRp5Wcjen2KEBzTaf/zExZlgA==
+"@ember-decorators/utils@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-3.0.1.tgz#1da79d8fccbdd59dc22d60bbecb953da29c97611"
+  integrity sha512-hcBqzkub3/5qzc3tl4JY0AaZzXEkl7PgaN3WaVM+4Ik/9XVyY8iNWSERYOLAZVR78fEQ5nprc571g/+mJHWtBw==
   dependencies:
     babel-plugin-debug-macros "^0.1.11"
     ember-cli-babel "^6.6.0"

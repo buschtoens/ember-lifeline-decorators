@@ -74,7 +74,7 @@
     "loader.js": "^4.7.0",
     "prettier": "^1.14.3",
     "qunit-dom": "^0.8.0",
-    "typescript": "^3.1.5",
+    "typescript": "^3.1.6",
     "typescript-eslint-parser": "^20.1.1",
     "semantic-release": "^15.10.6"
   },

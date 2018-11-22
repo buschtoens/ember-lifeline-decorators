@@ -3,15 +3,20 @@ import { runDisposables } from 'ember-lifeline';
 
 const hookedWithDisposables = new WeakSet<EmberObject>();
 
-export default function hookDisposablesRunner(target: EmberObject): void {
-  if (hookedWithDisposables.has(target)) return;
-  hookedWithDisposables.add(target);
+export default function hookDisposablesRunner(klass: EmberObject): void {
+  if (hookedWithDisposables.has(klass)) return;
+  hookedWithDisposables.add(klass);
 
-  const originalMethod = target.willDestroy;
-  target.willDestroy = function() {
+  const { prototype } = klass;
+
+  const originalMethod = Object.getOwnPropertyDescriptor(
+    prototype,
+    'willDestroy'
+  );
+  prototype.willDestroy = function() {
     runDisposables(this);
     if (originalMethod) {
-      return originalMethod.apply(this, arguments);
+      return originalMethod.value.apply(this, arguments);
     }
   };
 }

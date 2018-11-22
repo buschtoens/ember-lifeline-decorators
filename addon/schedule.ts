@@ -1,9 +1,10 @@
-import { decoratorWithRequiredParams } from '@ember-decorators/utils/decorator';
-import EmberObject from '@ember/object';
+import {
+  decoratorWithRequiredParams,
+  MethodDescriptor
+} from '@ember-decorators/utils/decorator';
 import { scheduleTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
-import { PropertiesOfType } from './utils/type-helpers';
-import afterInit from './utils/after-init';
+import { assert } from '@ember/debug';
 
 /**
  * Scheduling in the `afterRender` queue is bad for performance.
@@ -12,24 +13,28 @@ import afterInit from './utils/after-init';
  */
 type RunLoopQueue = Exclude<EmberRunQueues, 'afterRender'>;
 
-export default decoratorWithRequiredParams(function<
-  O extends EmberObject,
-  K extends PropertiesOfType<O, (...args: any[]) => any>,
-  OriginalMethod extends Extract<O[K], (...args: any[]) => any>
->(
-  target: O,
-  _key: K,
-  desc: PropertyDescriptor,
+export default decoratorWithRequiredParams(function(
+  desc: MethodDescriptor,
   [queue]: [RunLoopQueue]
-): PropertyDescriptor {
-  if (desc) {
-    const originalMethod: OriginalMethod = desc.value;
-    desc.value = function(this: O, ...args: Parameters<OriginalMethod>) {
-      return scheduleTask(this, queue, originalMethod, ...args);
-    };
-    afterInit(target, function() {
-      hookDisposablesRunner(this);
-    });
-  }
-  return desc;
+) {
+  assert(
+    `The '@disposable' decorator can only be used on methods.`,
+    desc.kind === 'method'
+  );
+
+  return {
+    ...desc,
+    descriptor: {
+      ...desc.descriptor,
+      value: function(this: O, ...args: Parameters<OriginalMethod>) {
+        return scheduleTask(
+          this,
+          queue,
+          desc.descriptor.value.bind(this, ...args),
+          ...args
+        );
+      }
+    },
+    finisher: hookDisposablesRunner
+  };
 });

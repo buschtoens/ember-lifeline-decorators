@@ -1,33 +1,35 @@
-import { decoratorWithRequiredParams } from '@ember-decorators/utils/decorator';
-import EmberObject from '@ember/object';
+import {
+  decoratorWithRequiredParams,
+  MethodDescriptor,
+  MethodDescriptorReturnValue
+} from '@ember-decorators/utils/decorator';
 import { debounceTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
-import { PropertiesOfType } from './utils/type-helpers';
+import { assert } from '@ember/debug';
 
-export default decoratorWithRequiredParams(function<
-  O extends EmberObject,
-  K extends PropertiesOfType<O, (...args: any[]) => any>,
-  OriginalMethod extends Extract<O[K], (...args: any[]) => any>
->(
-  target: O,
-  _key: K,
-  desc: PropertyDescriptor,
+export default decoratorWithRequiredParams(function(
+  desc: MethodDescriptor,
   [wait, immediate = false]: [number, boolean?]
-): PropertyDescriptor {
-  hookDisposablesRunner(target);
+): MethodDescriptorReturnValue {
+  assert(
+    `The '@debounce' decorator may only be used on methods.`,
+    desc.kind === 'method'
+  );
 
-  if (desc) {
-    const originalMethod: OriginalMethod = desc.value;
-    desc.value = function(this: O, ...args: Parameters<OriginalMethod>) {
-      return debounceTask(
-        this,
-        // @ts-ignore https://github.com/ember-lifeline/ember-lifeline/pull/248
-        originalMethod,
-        ...args,
-        wait,
-        immediate
-      );
-    };
-  }
-  return desc;
+  return {
+    ...desc,
+    descriptor: {
+      ...desc.descriptor,
+      value: function(this: O, ...args: Parameters<OriginalMethod>) {
+        return debounceTask(
+          this,
+          desc.descriptor.value,
+          ...args,
+          wait,
+          immediate
+        );
+      }
+    },
+    finisher: hookDisposablesRunner
+  };
 });

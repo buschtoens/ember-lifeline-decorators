@@ -11,7 +11,7 @@ export default decoratorWithRequiredParams(function(
   [timeout]: [number]
 ) {
   assert(
-    `The '@disposable' decorator can only be used on methods.`,
+    `The '@later' decorator can only be used on methods.`,
     desc.kind === 'method'
   );
 

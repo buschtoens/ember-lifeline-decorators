@@ -18,7 +18,7 @@ export default decoratorWithRequiredParams(function(
   [queue]: [RunLoopQueue]
 ) {
   assert(
-    `The '@disposable' decorator can only be used on methods.`,
+    `The '@schedule' decorator can only be used on methods.`,
     desc.kind === 'method'
   );
 

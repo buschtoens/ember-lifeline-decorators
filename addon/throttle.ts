@@ -11,7 +11,7 @@ export default decoratorWithRequiredParams(function(
   [spacing]: [number]
 ) {
   assert(
-    `The '@disposable' decorator can only be used on methods.`,
+    `The '@throttle' decorator can only be used on methods.`,
     desc.kind === 'method'
   );
 

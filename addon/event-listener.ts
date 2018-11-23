@@ -12,7 +12,7 @@ export default decoratorWithRequiredParams(function(
   [eventTarget, eventName, options]: [EventTarget, string, object?]
 ) {
   assert(
-    `The '@disposable' decorator can only be used on methods.`,
+    `The '@eventListener' decorator can only be used on methods.`,
     desc.kind === 'method'
   );
 

@@ -1,68 +1,142 @@
 import EmberObject from '@ember/object';
-import { Constructor } from 'ember-lifeline-decorators/utils/type-helpers';
+import { Constructor } from 'ts-std';
 
-export function decorator(
-  decorator: (desc: FieldDescriptor) => FieldDescriptorReturnValue
-): FieldDescriptorReturnValue;
+type FieldDecorator = PropertyDecorator;
 
-export function decorator(
-  decorator: (desc: MethodDescriptor) => MethodDescriptorReturnValue
-): MethodDescriptorReturnValue;
+export enum Placement {
+  Static = 'static',
+  Prototype = 'prototype',
+  Own = 'own'
+}
 
-export function decorator(
-  decorator: (desc: ClassDescriptor) => ClassDescriptorReturnValue
-): ClassDescriptorReturnValue;
+export enum Kind {
+  Field = 'field',
+  Method = 'method',
+  Class = 'class'
+}
 
-export function decoratorWithRequiredParams<Args extends any[]>(
-  decorator: (desc: FieldDescriptor, args: Args) => FieldDescriptorReturnValue
-): FieldDescriptorReturnValue;
+export type Descriptor<K extends Kind = any> = K extends Kind.Field
+  ? FieldDescriptor
+  : K extends Kind.Method
+  ? MethodDescriptor
+  : K extends Kind.Class
+  ? ClassDescriptor
+  : unknown;
+export type KindOfDescriptor<D extends Descriptor> = D extends Descriptor<
+  infer K
+>
+  ? K
+  : unknown;
 
-export function decoratorWithRequiredParams<Args extends any[]>(
-  decorator: (desc: MethodDescriptor, args: Args) => MethodDescriptorReturnValue
-): MethodDescriptorReturnValue;
+export type Decorator<K extends Kind = any> = K extends Kind.Field
+  ? FieldDecorator
+  : K extends Kind.Method
+  ? MethodDecorator
+  : K extends Kind.Class
+  ? ClassDecorator
+  : unknown;
+export type KindOfDecorator<D extends Decorator> = D extends Decorator<infer K>
+  ? K
+  : unknown;
 
-export function decoratorWithRequiredParams<Args extends any[]>(
-  decorator: (desc: ClassDescriptor, args: Args) => ClassDescriptorReturnValue
-): ClassDescriptorReturnValue;
+export type DecoratorReturnValue<K extends Kind = any> = K extends Kind.Field
+  ? FieldDecoratorReturnValue
+  : K extends Kind.Method
+  ? MethodDecoratorReturnValue
+  : K extends Kind.Class
+  ? ClassDecoratorReturnValue
+  : unknown;
+export type KindOfDecoratorReturnValue<
+  D extends DecoratorReturnValue
+> = D extends DecoratorReturnValue<infer K> ? K : unknown;
 
-type Descriptor = FieldDescriptor | MethodDescriptor | ClassDescriptor;
+// export function decorator<K extends Kind>(
+//   decorator: (desc: Descriptor<K>) => DecoratorReturnValue<K>
+// ): Decorator<K>;
+
+export function decorator<K extends Kind.Field>(
+  decorator: (desc: Descriptor<K>) => DecoratorReturnValue<K>
+): Decorator<K>;
+export function decorator<K extends Kind.Method>(
+  decorator: (desc: Descriptor<K>) => DecoratorReturnValue<K>
+): Decorator<K>;
+export function decorator<K extends Kind.Class>(
+  decorator: (desc: Descriptor<K>) => DecoratorReturnValue<K>
+): Decorator<K>;
+
+// export function decoratorWithRequiredParams<K extends Kind, Args extends any[]>(
+//   decorator: (desc: Descriptor<K>, args: Args) => DecoratorReturnValue<K>
+// ): (...args: Args) => Decorator<K>;
+
+export function decoratorWithRequiredParams<
+  K extends Kind.Field,
+  Args extends any[]
+>(
+  decorator: (desc: Descriptor<K>, args: Args) => DecoratorReturnValue<K>
+): (...args: Args) => Decorator<K>;
+export function decoratorWithRequiredParams<
+  K extends Kind.Method,
+  Args extends any[]
+>(
+  decorator: (desc: Descriptor<K>, args: Args) => DecoratorReturnValue<K>
+): (...args: Args) => Decorator<K>;
+export function decoratorWithRequiredParams<
+  K extends Kind.Class,
+  Args extends any[]
+>(
+  decorator: (desc: Descriptor<K>, args: Args) => DecoratorReturnValue<K>
+): (...args: Args) => Decorator<K>;
+
+// export function decoratorWithParams<K extends Kind, Args extends any[]>(
+//   decorator: (desc: Descriptor<K>, args: Args) => FieldDecoratorReturnValue
+// ): (...args: Args) => Decorator<K> | Decorator<K>;
+
+export function decoratorWithParams<K extends Kind.Field, Args extends any[]>(
+  decorator: (desc: Descriptor<K>, args: Args) => FieldDecoratorReturnValue
+): (...args: Args) => Decorator<K> | Decorator<K>;
+export function decoratorWithParams<K extends Kind.Method, Args extends any[]>(
+  decorator: (desc: Descriptor<K>, args: Args) => FieldDecoratorReturnValue
+): (...args: Args) => Decorator<K> | Decorator<K>;
+export function decoratorWithParams<K extends Kind.Class, Args extends any[]>(
+  decorator: (desc: Descriptor<K>, args: Args) => FieldDecoratorReturnValue
+): (...args: Args) => Decorator<K> | Decorator<K>;
 
 interface FieldDescriptor {
-  kind: 'field';
+  kind: Kind.Field;
   key: string | Symbol;
-  placement: 'static' | 'prototype' | 'own';
+  placement: Placement;
   descriptor: PropertyDescriptor;
   initializer(): unknown;
 }
 
-interface FieldDescriptorReturnValue extends FieldDescriptor {
+interface FieldDecoratorReturnValue extends FieldDescriptor {
   extras?: (Descriptor | Initializer)[];
   finisher?(klass: Constructor<any>): void;
 }
 
 interface MethodDescriptor {
-  kind: 'method';
+  kind: Kind.Method;
   key: string | Symbol;
-  placement: 'static' | 'prototype' | 'own';
+  placement: Placement;
   descriptor: PropertyDescriptor;
 }
 
-interface MethodDescriptorReturnValue extends MethodDescriptor {
+interface MethodDecoratorReturnValue extends MethodDescriptor {
   extras?: (Descriptor | Initializer)[];
   finisher?(klass: Constructor<any>): void;
 }
 
 interface ClassDescriptor {
-  kind: 'class';
+  kind: Kind.Class;
   elements: any[];
 }
 
-interface ClassDescriptorReturnValue extends ClassDescriptor {
+interface ClassDecoratorReturnValue extends ClassDescriptor {
   finisher?(klass: Constructor<any>): void;
 }
 
 interface Initializer {
   kind: 'initializer';
-  placement: 'static' | 'prototype' | 'own';
+  placement: Placement;
   initializer(): unknown;
 }

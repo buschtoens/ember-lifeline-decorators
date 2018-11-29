@@ -5,6 +5,7 @@ import {
 import { scheduleTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 /**
  * Scheduling in the `afterRender` queue is bad for performance.
@@ -26,7 +27,7 @@ export default decoratorWithRequiredParams(function(
     ...desc,
     descriptor: {
       ...desc.descriptor,
-      value: function(this: O, ...args: Parameters<OriginalMethod>) {
+      value: function(this: EmberObject, ...args: any[]) {
         return scheduleTask(
           this,
           queue,

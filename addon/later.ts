@@ -5,6 +5,7 @@ import {
 import { runTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
+import EmberObject from '@ember/object';
 
 export default decoratorWithRequiredParams(function(
   desc: MethodDescriptor,
@@ -19,7 +20,7 @@ export default decoratorWithRequiredParams(function(
     ...desc,
     descriptor: {
       ...desc.descriptor,
-      value: function(this: O, ...args: Parameters<OriginalMethod>) {
+      value: function(this: EmberObject, ...args: any[]) {
         return runTask(
           this,
           desc.descriptor.value.bind(this, ...args),

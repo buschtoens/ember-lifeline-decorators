@@ -1,9 +1,4 @@
 /**
- * A constructor function / class basically.
- */
-export type Constructor<T> = new (...args: any[]) => T;
-
-/**
  * All values on the object `Obj`.
  */
 export type Values<Obj> = Obj[keyof Obj];

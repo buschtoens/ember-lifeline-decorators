@@ -3,6 +3,7 @@ import { registerDisposable } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import ANONYMOUS from './utils/anonymous-field';
+import EmberObject from '@ember/object';
 
 export default decorator(function(desc: MethodDescriptor) {
   assert(
@@ -18,7 +19,7 @@ export default decorator(function(desc: MethodDescriptor) {
         // kind: 'initializer',
         ...ANONYMOUS,
         placement: 'own',
-        initializer() {
+        initializer(this: EmberObject) {
           // `.bind` is required because ember-lifeline does not set the correct context
           registerDisposable(this, desc.descriptor.value.bind(this));
         }

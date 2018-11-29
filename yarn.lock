@@ -642,20 +642,20 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@ember-decorators/babel-transforms@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/babel-transforms/-/babel-transforms-3.1.0.tgz#7702c673f0cbb8a59b7a8f2a82707d8ef190bcbd"
-  integrity sha512-jr/HJpKX+lbgrXLvbRHuMVMtXvFmirmXDKzYN6k+G+gDjTU7SZF2DQ9yNe0P2gSW7hxU7AoqyfZFUVY+KHU6+g==
+"@ember-decorators/babel-transforms@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/babel-transforms/-/babel-transforms-3.1.2.tgz#f4e0646b1204a64845a1c739a88b406b560e6243"
+  integrity sha512-bQwgTjSGAquZKpr2ojewpaxxlXCJ8DfqBBBs+JcpnqDF+qZ12Ssgmr8BSSfuKo+wmYwdt2FzyTxQCJL3O5XC/g==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.1.0"
     "@babel/plugin-proposal-decorators" "^7.1.2"
     ember-cli-babel-plugin-helpers "^1.0.0"
     ember-cli-version-checker "^2.1.0"
 
-"@ember-decorators/utils@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-3.1.0.tgz#98e1280e3aad791eb300e4b98d0ce36cd883b921"
-  integrity sha512-WwjUw0fGw9z8bhCDi0DMUK8fcvXuNwARv/b8Z2wXLEF3CzphfHvc7SXOBoBDjaSNxnwymex4naF1UlUKxBzHBw==
+"@ember-decorators/utils@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-3.1.2.tgz#ab15211577b4267ba5d5e35e704206738a6aa6ff"
+  integrity sha512-1+i1+BHz1QXW5zzsJTEmR+wVcLm3k1bTb1a37k1X7XXSxDyU7MRo1CnafR4H+70qKlJPnfxyeWd9jHpNnuLrSQ==
   dependencies:
     babel-plugin-debug-macros "^0.1.11"
     ember-cli-babel "^7.1.3"
@@ -4477,10 +4477,10 @@ eslint-plugin-prettier@^3.0.0:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-typescript@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-0.13.0.tgz#07fa9a166dee1daff14716c70fb8fb7c6583d852"
-  integrity sha512-dN8EwZfkOobYJ6VCFJ0Kd39OLSectdJlkG5L+VmA2BtMunZALQus6XLx21Gkj6vmfmUDk6uEGCB7JCszhvZoTA==
+eslint-plugin-typescript@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-typescript/-/eslint-plugin-typescript-0.14.0.tgz#068549c3f4c7f3f85d88d398c29fa96bf500884c"
+  integrity sha512-2u1WnnDF2mkWWgU1lFQ2RjypUlmRoBEvQN02y9u+IL12mjWlkKFGEBnVsjs9Y8190bfPQCvWly1c2rYYUSOxWw==
   dependencies:
     requireindex "~1.1.0"
 
@@ -10695,6 +10695,11 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
+
+ts-std@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/ts-std/-/ts-std-0.7.0.tgz#fd1284696bed7f19694a0f445aeda2f182142567"
+  integrity sha512-YKn6ogWEqe4oEL7/WncrFrU7TUb+RWrBxkBfQ7jDVMdbeJVpapIIiahFJJXcdUOZqo42pR7Ok1V3Wt5KeUqBrA==
 
 tslib@^1.9.0:
   version "1.9.3"

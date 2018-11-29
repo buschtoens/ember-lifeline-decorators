@@ -13,7 +13,7 @@ module('@eventListener', function(hooks) {
     let runArg: MouseEvent;
 
     class TestObject extends EmberObject {
-      @eventListener(window, 'click')
+      @eventListener(window, 'click', { once: true })
       doStuff(arg: MouseEvent) {
         runCount++;
         // eslint-disable-next-line typescript/no-use-before-define

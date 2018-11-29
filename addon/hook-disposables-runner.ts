@@ -1,17 +1,25 @@
 import EmberObject from '@ember/object';
 import { runDisposables } from 'ember-lifeline';
+import { Constructor } from 'ts-std';
 
-const hookedWithDisposables = new WeakSet<EmberObject>();
+const hookedWithDisposables = new WeakSet<Constructor<EmberObject>>();
 
-export default function hookDisposablesRunner(target: EmberObject): void {
-  if (hookedWithDisposables.has(target)) return;
-  hookedWithDisposables.add(target);
+export default function hookDisposablesRunner(
+  klass: Constructor<EmberObject>
+): void {
+  if (hookedWithDisposables.has(klass)) return;
+  hookedWithDisposables.add(klass);
 
-  const originalMethod = target.willDestroy;
-  target.willDestroy = function() {
+  const { prototype } = klass;
+
+  const originalMethod = Object.getOwnPropertyDescriptor(
+    prototype,
+    'willDestroy'
+  );
+  prototype.willDestroy = function() {
     runDisposables(this);
     if (originalMethod) {
-      return originalMethod.apply(this, arguments);
+      return originalMethod.value.apply(this, arguments);
     }
   };
 }

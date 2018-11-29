@@ -1,22 +1,30 @@
-import EmberObject from '@ember/object';
+import { decorator, MethodDescriptor } from '@ember-decorators/utils/decorator';
 import { registerDisposable } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
-import { PropertiesOfType } from './utils/type-helpers';
-import afterInit from './utils/after-init';
+import { assert } from '@ember/debug';
+import ANONYMOUS from './utils/anonymous-field';
+import EmberObject from '@ember/object';
 
-export default function disposable<
-  O extends EmberObject,
-  K extends PropertiesOfType<O, () => any>,
-  OriginalMethod extends Extract<O[K], () => any>
->(target: O, _key: K, desc: PropertyDescriptor): PropertyDescriptor {
-  if (desc) {
-    const originalMethod: OriginalMethod = desc.value;
-    afterInit(target, function() {
-      hookDisposablesRunner(this);
+export default decorator(function(desc: MethodDescriptor) {
+  assert(
+    `The '@disposable' decorator can only be used on methods.`,
+    desc.kind === 'method'
+  );
 
-      // `.bind` is required because ember-lifeline does not set the correct context
-      registerDisposable(this, originalMethod.bind(this));
-    });
-  }
-  return desc;
-}
+  return {
+    ...desc,
+    extras: [
+      {
+        // https://github.com/babel/babel/issues/9068
+        // kind: 'initializer',
+        ...ANONYMOUS,
+        placement: 'own',
+        initializer(this: EmberObject) {
+          // `.bind` is required because ember-lifeline does not set the correct context
+          registerDisposable(this, desc.descriptor.value.bind(this));
+        }
+      }
+    ],
+    finisher: hookDisposablesRunner
+  };
+});

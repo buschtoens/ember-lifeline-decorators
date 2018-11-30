@@ -13,7 +13,7 @@ module('@schedule', function(hooks) {
     let runArg: string;
 
     class TestObject extends EmberObject {
-      @schedule('sync')
+      @schedule('actions')
       doStuff(arg: string) {
         runCount++;
         // eslint-disable-next-line typescript/no-use-before-define

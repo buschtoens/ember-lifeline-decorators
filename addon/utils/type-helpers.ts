@@ -1,4 +1,13 @@
 /**
+ * Gets the constructor / class from an instance type.
+ *
+ * From `ts-std`.
+ */
+export interface Constructor<T = unknown> {
+  new (...args: any[]): T;
+}
+
+/**
  * All values on the object `Obj`.
  */
 export type Values<Obj> = Obj[keyof Obj];

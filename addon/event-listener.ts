@@ -10,7 +10,7 @@ import ANONYMOUS from './utils/anonymous-field';
 import EmberObject from '@ember/object';
 import { beforeMethod } from 'patch-method';
 import Component from '@ember/component';
-import { Constructor } from 'ts-std';
+import { Constructor } from './utils/type-helpers';
 
 function NOOP(): void {}
 

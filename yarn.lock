@@ -711,6 +711,34 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@buschtoens/ember-auto-import@1.2.17-beta.1":
+  version "1.2.17-beta.1"
+  resolved "https://registry.yarnpkg.com/@buschtoens/ember-auto-import/-/ember-auto-import-1.2.17-beta.1.tgz#9925756c0450637a1982969df0ccdbbd1015abdb"
+  integrity sha512-Qa/hmC65flK91bLZe2phBbfI6lawSbjWwLzW1Y+pvXaiWRE6P1vmcWaJaTaaqF5b862KavD6Ep45gCu/2jqRuQ==
+  dependencies:
+    "@babel/core" "^7.1.6"
+    babel-core "^6.26.3"
+    babel-plugin-syntax-dynamic-import "^6.18.0"
+    babel-template "^6.26.0"
+    babylon "^6.18.0"
+    broccoli-debug "^0.6.4"
+    broccoli-plugin "^1.3.0"
+    debug "^3.1.0"
+    ember-cli-babel "^6.6.0"
+    enhanced-resolve "^4.0.0"
+    fs-extra "^6.0.1"
+    fs-tree-diff "^0.5.7"
+    handlebars "^4.0.11"
+    js-string-escape "^1.0.1"
+    lodash "^4.17.10"
+    mkdirp "^0.5.1"
+    pkg-up "^2.0.0"
+    resolve "^1.7.1"
+    rimraf "^2.6.2"
+    symlink-or-copy "^1.2.0"
+    walk-sync "^0.3.2"
+    webpack "^4.12.0"
+
 "@ember-decorators/babel-transforms@^3.1.3":
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/@ember-decorators/babel-transforms/-/babel-transforms-3.1.3.tgz#00463da53c6e01c13f005c5b5c16c41d0b4d7bfc"
@@ -4273,34 +4301,6 @@ ember-assign-polyfill@^2.5.0:
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-version-checker "^2.0.0"
-
-ember-auto-import@^1.2.16:
-  version "1.2.16"
-  resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.2.16.tgz#3a94fef045e95a0161c420b121fbaccbdaee5977"
-  integrity sha512-2YXYYpeSPuXymwrwTrnDBmXpIarOKlchn5VwkWiy+dZAJAHP4tQ17MGDABYD43gojJzEmcj/Eq26YPYnbrWOtQ==
-  dependencies:
-    "@babel/core" "^7.1.6"
-    babel-core "^6.26.3"
-    babel-plugin-syntax-dynamic-import "^6.18.0"
-    babel-template "^6.26.0"
-    babylon "^6.18.0"
-    broccoli-debug "^0.6.4"
-    broccoli-plugin "^1.3.0"
-    debug "^3.1.0"
-    ember-cli-babel "^6.6.0"
-    enhanced-resolve "^4.0.0"
-    fs-extra "^6.0.1"
-    fs-tree-diff "^0.5.7"
-    handlebars "^4.0.11"
-    js-string-escape "^1.0.1"
-    lodash "^4.17.10"
-    mkdirp "^0.5.1"
-    pkg-up "^2.0.0"
-    resolve "^1.7.1"
-    rimraf "^2.6.2"
-    symlink-or-copy "^1.2.0"
-    walk-sync "^0.3.2"
-    webpack "^4.12.0"
 
 ember-cli-babel-plugin-helpers@^1.0.0:
   version "1.0.2"

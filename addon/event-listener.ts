@@ -1,6 +1,7 @@
 import {
   decoratorWithRequiredParams,
-  MethodDescriptor
+  MethodDescriptor,
+  MethodDecoratorReturnValue
 } from '@ember-decorators/utils/decorator';
 import { addEventListener } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
@@ -11,7 +12,7 @@ import { beforeMethod } from 'patch-method';
 import Component from '@ember/component';
 import { Constructor } from 'ts-std';
 
-function NOOP() {}
+function NOOP(): void {}
 
 export default decoratorWithRequiredParams(function(
   desc: MethodDescriptor,
@@ -20,7 +21,7 @@ export default decoratorWithRequiredParams(function(
     string,
     object?
   ]
-) {
+): MethodDecoratorReturnValue {
   assert(
     `The '@eventListener' decorator can only be used on methods.`,
     desc.kind === 'method'

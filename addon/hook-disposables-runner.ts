@@ -1,6 +1,6 @@
 import EmberObject from '@ember/object';
 import { runDisposables } from 'ember-lifeline';
-import { Constructor } from 'ts-std';
+import { Constructor } from './utils/type-helpers';
 
 const hookedWithDisposables = new WeakSet<Constructor<EmberObject>>();
 

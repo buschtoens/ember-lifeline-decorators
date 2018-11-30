@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import { Constructor } from 'ts-std';
+import { Constructor } from 'ember-lifeline-decorators/utils/type-helpers';
 
 type FieldDecorator = PropertyDecorator;
 

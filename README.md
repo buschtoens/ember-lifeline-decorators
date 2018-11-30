@@ -9,7 +9,6 @@
 [![dependencies](https://img.shields.io/david/buschtoens/ember-lifeline-decorators.svg)](https://david-dm.org/buschtoens/ember-lifeline-decorators)
 [![devDependencies](https://img.shields.io/david/dev/buschtoens/ember-lifeline-decorators.svg)](https://david-dm.org/buschtoens/ember-lifeline-decorators)
 
-
 This Ember addon gives you
 [decorators](https://github.com/tc39/proposal-decorators) for elegantly using
 [ember-lifeline][ember-lifeline] with ES6 classes.
@@ -40,27 +39,27 @@ decorators do this for you.
 
 ### Available decorators
 
-| Decorator                              | ember-lifeline                             | Description  |
-|----------------------------------------|--------------------------------------------|--------------|
-| **[`@later`](#later)**                 | [`runTask`][runTask]                       | Delay the execution of this method |
-| **[`@schedule`](#schedule)**           | [`scheduleTask`][scheduleTask]             | Schedule this method on a run loop queue |
-| **[`@debounce`](#debounce)**           | [`debounceTask`][debounceTask]             | Debounce this method |
-| **[`@throttle`](#throttle)**           | [`throttleTask`][throttleTask]             | Throttle this method |
-| **[`@disposable`](#disposable)**       | [`registerDisposable`][registerDisposable] | Automatically execute this method during `willDestroy` |
-| **[`@eventListener`](#eventListener)** | [`addEventListener`][addEventListener]     | Execute this method when a DOM event is fired |
+| Decorator                              | ember-lifeline                             | Description                                            |
+| -------------------------------------- | ------------------------------------------ | ------------------------------------------------------ |
+| **[`@later`](#later)**                 | [`runTask`][runtask]                       | Delay the execution of this method                     |
+| **[`@schedule`](#schedule)**           | [`scheduleTask`][scheduletask]             | Schedule this method on a run loop queue               |
+| **[`@debounce`](#debounce)**           | [`debounceTask`][debouncetask]             | Debounce this method                                   |
+| **[`@throttle`](#throttle)**           | [`throttleTask`][throttletask]             | Throttle this method                                   |
+| **[`@disposable`](#disposable)**       | [`registerDisposable`][registerdisposable] | Automatically execute this method during `willDestroy` |
+| **[`@eventListener`](#eventListener)** | [`addEventListener`][addeventlistener]     | Execute this method when a DOM event is fired          |
 
-[runTask]: https://github.com/ember-lifeline/ember-lifeline#runtask
-[scheduleTask]: https://github.com/ember-lifeline/ember-lifeline#scheduletask
-[debounceTask]: https://github.com/ember-lifeline/ember-lifeline#debouncetask
-[throttleTask]: https://github.com/ember-lifeline/ember-lifeline#throttletask
-[registerDisposable]: https://github.com/ember-lifeline/ember-lifeline#registerdisposable
-[addEventListener]: https://github.com/ember-lifeline/ember-lifeline#addeventlistener
+[runtask]: https://github.com/ember-lifeline/ember-lifeline#runtask
+[scheduletask]: https://github.com/ember-lifeline/ember-lifeline#scheduletask
+[debouncetask]: https://github.com/ember-lifeline/ember-lifeline#debouncetask
+[throttletask]: https://github.com/ember-lifeline/ember-lifeline#throttletask
+[registerdisposable]: https://github.com/ember-lifeline/ember-lifeline#registerdisposable
+[addeventlistener]: https://github.com/ember-lifeline/ember-lifeline#addeventlistener
 
 #### `@later`
 
-- **`timeout`**: *`number`* — delay in milliseconds
+- **`timeout`**: _`number`_ — delay in milliseconds
 
-[`runTask`][runTask] / [`import { later } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/later)
+[`runTask`][runtask] / [`import { later } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/later)
 
 Delays the execution of the decorator by `timeout` milliseconds.
 
@@ -83,14 +82,14 @@ export default class ExampleComponent extends Component {
 
 #### `@schedule`
 
-- **`queue`**: *`RunLoopQueue`* — the queue to put the method in
+- **`queue`**: _`RunLoopQueue`_ — the queue to put the method in
   - `sync`
   - `actions`
   - `routerTransitions`
   - `render`
   - `destroy`
 
-[`scheduleTask`][scheduleTask] / [`import { schedule } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/schedule)
+[`scheduleTask`][scheduletask] / [`import { schedule } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/schedule)
 
 When the method is called, it is scheduled to be run in the specified
 [run loop queue](https://guides.emberjs.com/release/applications/run-loop/).
@@ -114,14 +113,14 @@ export default class ExampleComponent extends Component {
 
 #### `@debounce`
 
-- **`wait`**: *`number`* — delay in milliseconds
-- **`immediate = false`**: *`boolean`* — trigger the function on the leading instead of the trailing edge of the wait interval
+- **`wait`**: _`number`_ — delay in milliseconds
+- **`immediate = false`**: _`boolean`_ — trigger the function on the leading instead of the trailing edge of the wait interval
 
-[`debounceTask`][debounceTask] / [`import { debounce } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/debounce)
+[`debounceTask`][debouncetask] / [`import { debounce } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/debounce)
 
 Delay calling the target method until the debounce period has elapsed with no
 additional debounce calls. If the method is called again before the specified
-time has elapsed, the timer is reset and the entire period must pass again 
+time has elapsed, the timer is reset and the entire period must pass again
 before the target method is called.
 
 ```js
@@ -143,10 +142,10 @@ export default class ExampleComponent extends Component {
 
 #### `@throttle`
 
-- **`spacing`**: *`number`* — Number of milliseconds to space out executions
-- **`immediate = true`**: *`boolean`* — trigger the function on the leading instead of the trailing edge of the wait interval
+- **`spacing`**: _`number`_ — Number of milliseconds to space out executions
+- **`immediate = true`**: _`boolean`_ — trigger the function on the leading instead of the trailing edge of the wait interval
 
-[`throttleTask`][throttleTask] / [`import { throttle } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/throttle)
+[`throttleTask`][throttletask] / [`import { throttle } from '@ember/runloop';`](https://www.emberjs.com/api/ember/3.5/functions/@ember%2Frunloop/throttle)
 
 Ensure that the target method is never called more frequently than the specified
 spacing period.
@@ -170,13 +169,15 @@ export default class ExampleComponent extends Component {
 
 #### `@eventListener`
 
-- **`target`**: *`EventTarget`* — target, such as `window` or `HTMLElement`, to register the listener on
-- **`eventName`**: *`string`* — the event to listen for
-- **`options?`**: *`object`* — optional options to pass to `addEventListener`
+- **`target`**:
+  - _`EventTarget`_ — target, such as `window` or `HTMLElement`, to register the listener on
+  - _`(this: EmberObject, ctx: EmberObject) => EventTarget`_ — a callback that is called with the context bound to and the first parameter as the object the decorator is used on
+- **`eventName`**: _`string`_ — the event to listen for
+- **`options?`**: _`object`_ — optional options to pass to `addEventListener`
 
-[`addEventListener`][addEventListener] / [`EventTarget.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
+[`addEventListener`][addeventlistener] / [`EventTarget.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 
-Automatically calls this method whenever the given event is fired on `element`.
+Automatically calls this method whenever the given event is fired on `target`.
 
 ```js
 import Component from '@ember/component';
@@ -189,3 +190,23 @@ export default class ExampleComponent extends Component {
   }
 }
 ```
+
+By passing a callback function as the first parameter, you can query the class
+instance the decorator is used on for information. For instance, you can access
+the `element` property of a `Component`:
+
+```js
+import Component from '@ember/component';
+import { eventListener } from 'ember-lifeline-decorators';
+
+export default class ExampleComponent extends Component {
+  @eventListener(t => t.element, 'scroll', { passive: true })
+  function onScroll(event) {
+    // ...
+  }
+}
+```
+
+If the `@eventListener` is used on a subclass of `Component`, the callback will
+be executed during the `didInsertElement` hook. For all other subclasses of
+`EmberObject` the callback will be executed during `init`.

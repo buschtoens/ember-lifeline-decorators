@@ -33,7 +33,9 @@ export default decoratorWithRequiredParams(function(
       finisher(Class: Constructor<EmberObject>) {
         beforeMethod(
           Class as Constructor<Component>,
-          Class.prototype instanceof Component ? 'didInsertElement' : 'init',
+          typeof Class.prototype.didInsertElement === 'function'
+            ? 'didInsertElement'
+            : 'init',
           function() {
             addEventListener(
               this,

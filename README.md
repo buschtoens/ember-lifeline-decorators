@@ -207,6 +207,8 @@ export default class ExampleComponent extends Component {
 }
 ```
 
-If the `@eventListener` is used on a subclass of `Component`, the callback will
-be executed during the `didInsertElement` hook. For all other subclasses of
-`EmberObject` the callback will be executed during `init`.
+If the `@eventListener` is used on a class that implements the
+`didInsertElement` hook, like the good ol' Ember `Component` or
+[`sparkles-component`](https://github.com/rwjblue/sparkles-component), the
+callback will be executed during the `didInsertElement` hook. For all other
+subclasses of `EmberObject` the callback will be executed during `init`.

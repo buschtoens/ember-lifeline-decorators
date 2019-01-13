@@ -11,6 +11,7 @@ import EmberObject from '@ember/object';
 import { beforeMethod } from 'patch-method';
 import Component from '@ember/component';
 import { Constructor } from './utils/type-helpers';
+import { IDestroyable } from 'ember-lifeline/interfaces';
 
 function NOOP(): void {}
 
@@ -61,7 +62,7 @@ export default decoratorWithRequiredParams(function(
         // kind: 'initializer',
         ...ANONYMOUS,
         placement: 'own',
-        initializer() {
+        initializer(this: IDestroyable) {
           addEventListener(
             this,
             // @ts-ignore https://github.com/ember-lifeline/ember-lifeline/pull/249

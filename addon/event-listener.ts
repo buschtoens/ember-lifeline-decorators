@@ -8,7 +8,7 @@ import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import ANONYMOUS from './utils/anonymous-field';
 import EmberObject from '@ember/object';
-import { beforeMethod } from 'patch-method';
+import { afterMethod } from 'patch-method';
 import Component from '@ember/component';
 import { Constructor } from './utils/type-helpers';
 import { IDestroyable } from 'ember-lifeline/interfaces';
@@ -32,7 +32,7 @@ export default decoratorWithRequiredParams(function(
     return {
       ...desc,
       finisher(Class: Constructor<EmberObject>) {
-        beforeMethod(
+        afterMethod(
           Class as Constructor<Component>,
           typeof Class.prototype.didInsertElement === 'function'
             ? 'didInsertElement'

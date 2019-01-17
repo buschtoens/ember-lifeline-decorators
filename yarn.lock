@@ -651,12 +651,12 @@
     ember-cli-babel-plugin-helpers "^1.0.0"
     ember-cli-version-checker "^2.1.0"
 
-"@ember-decorators/utils@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-4.0.2.tgz#deb6d718a4087382206a2494e9f0a507512cc861"
-  integrity sha512-hm3A3rpYF61sFhXQhrdfQlSqhTAbgbtUjwDSaQQb7hB3t7uTwtWRLVOG5kOqp+bwOIEB7bor+zEmfyubrTp+Qw==
+"@ember-decorators/utils@^5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@ember-decorators/utils/-/utils-5.1.1.tgz#fe99e642f28184e5bf31d580a99d7c2cebea86b3"
+  integrity sha512-c7U+FY8XNi9blwv4apzrPpw2YMPVf5MjDZA2HUIyNvJmEVoFib8jTbBE05F6A/UWuzVflc36drICVtv2n/clIg==
   dependencies:
-    babel-plugin-debug-macros "^0.1.11 || ^0.2.0"
+    babel-plugin-debug-macros "^0.2.0"
     ember-cli-babel "^7.1.3"
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.1.2"
@@ -1838,7 +1838,7 @@ babel-plugin-debug-macros@^0.1.10:
   dependencies:
     semver "^5.3.0"
 
-"babel-plugin-debug-macros@^0.1.11 || ^0.2.0", babel-plugin-debug-macros@^0.2.0, babel-plugin-debug-macros@^0.2.0-beta.6:
+babel-plugin-debug-macros@^0.2.0, babel-plugin-debug-macros@^0.2.0-beta.6:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-debug-macros/-/babel-plugin-debug-macros-0.2.0.tgz#0120ac20ce06ccc57bf493b667cf24b85c28da7a"
   integrity sha512-Wpmw4TbhR3Eq2t3W51eBAQSdKlr+uAyF0GI4GtPfMCD12Y4cIdpKC9l0RjNTH/P9isFypSqqewMPm7//fnZlNA==

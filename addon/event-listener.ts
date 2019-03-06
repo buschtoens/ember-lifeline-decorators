@@ -11,7 +11,7 @@ import EmberObject from '@ember/object';
 import { afterMethod } from 'patch-method';
 import Component from '@ember/component';
 import { Constructor } from './utils/type-helpers';
-import { IDestroyable } from 'ember-lifeline/interfaces';
+import { IDestroyable } from 'ember-lifeline/types';
 
 function NOOP(): void {}
 

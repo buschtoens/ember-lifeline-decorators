@@ -6,10 +6,11 @@ import { throttleTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
+import privateAlias from './utils/private-alias';
 
 export default decoratorWithRequiredParams(function(
   desc: MethodDescriptor,
-  [spacing]: [number]
+  [spacing, immediate = true]: [number, boolean?]
 ) {
   assert(
     `The '@throttle' decorator can only be used on methods.`,
@@ -17,19 +18,13 @@ export default decoratorWithRequiredParams(function(
   );
 
   return {
-    ...desc,
-    descriptor: {
-      ...desc.descriptor,
-      value(this: EmberObject, ...args: any[]) {
-        return throttleTask(
-          this,
-          desc.descriptor.value.bind(this, ...args),
-          spacing
-          // @TODO: https://github.com/ember-lifeline/ember-lifeline/issues/133
-          // immediate
-        );
-      }
-    },
+    ...privateAlias(
+      desc,
+      alias =>
+        function(this: EmberObject, ...args: any[]) {
+          return throttleTask(this, alias, ...args, spacing, immediate);
+        }
+    ),
     finisher: hookDisposablesRunner
   };
 });

@@ -6,6 +6,7 @@ import { debounceTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
+import privateAlias from './utils/private-alias';
 
 export default decoratorWithRequiredParams(function(
   desc: MethodDescriptor,
@@ -17,19 +18,13 @@ export default decoratorWithRequiredParams(function(
   );
 
   return {
-    ...desc,
-    descriptor: {
-      ...desc.descriptor,
-      value(this: EmberObject, ...args: any[]) {
-        return debounceTask(
-          this,
-          desc.descriptor.value,
-          ...args,
-          wait,
-          immediate
-        );
-      }
-    },
+    ...privateAlias(
+      desc,
+      alias =>
+        function(this: EmberObject, ...args: any[]) {
+          return debounceTask(this, alias, ...args, wait, immediate);
+        }
+    ),
     finisher: hookDisposablesRunner
   };
 });

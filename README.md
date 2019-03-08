@@ -177,6 +177,11 @@ export default class ExampleComponent extends Component {
 
 [`addEventListener`][addeventlistener] / [`EventTarget.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 
+> ⚠️👉 In almost all scenarios it is much more sensible to use
+> [`ember-on-modifier`][ember-on-modifier].
+
+[ember-on-modifier]: https://github.com/buschtoens/ember-on-modifier#readme
+
 Automatically calls this method whenever the given event is fired on `target`.
 
 ```js

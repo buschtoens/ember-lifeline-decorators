@@ -4,7 +4,7 @@ import { FieldDescriptor, Kind } from '@ember-decorators/utils/decorator';
 
 const ANONYMOUS: Pick<FieldDescriptor, 'kind' | 'key' | 'descriptor'> = {
   kind: 'field' as Kind.Field,
-  key: Symbol(),
+  key: Symbol('anonymous'),
   descriptor: {
     configurable: false,
     enumerable: false,

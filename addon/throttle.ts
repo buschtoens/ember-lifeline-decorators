@@ -20,7 +20,7 @@ export default decoratorWithRequiredParams(function(
     ...desc,
     descriptor: {
       ...desc.descriptor,
-      value: function(this: EmberObject, ...args: any[]) {
+      value(this: EmberObject, ...args: any[]) {
         return throttleTask(
           this,
           desc.descriptor.value.bind(this, ...args),

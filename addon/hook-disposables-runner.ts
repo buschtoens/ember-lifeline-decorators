@@ -16,10 +16,10 @@ export default function hookDisposablesRunner(
     prototype,
     'willDestroy'
   );
-  prototype.willDestroy = function() {
+  prototype.willDestroy = function(...args: any[]) {
     runDisposables(this);
     if (originalMethod) {
-      return originalMethod.value.apply(this, arguments);
+      return originalMethod.value.apply(this, args);
     }
   };
 }

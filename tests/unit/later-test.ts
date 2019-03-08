@@ -17,7 +17,7 @@ module('@later', function(hooks) {
       @later(5)
       doStuff(arg: string) {
         runCount++;
-        // eslint-disable-next-line typescript/no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         assert.equal(this, obj, 'context is correct');
         runArg = arg;
       }
@@ -32,7 +32,7 @@ module('@later', function(hooks) {
     await delay(10);
 
     assert.equal(runCount, 1, 'should have run');
-    // eslint-disable-next-line typescript/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     assert.equal(runArg!, 'arg1', 'should run the task with the arg');
   });
 

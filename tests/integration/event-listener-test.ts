@@ -21,7 +21,7 @@ module('@eventListener', function(hooks) {
     this.owner.register('component:test-component', TestComponent);
 
     await render(hbs`{{test-component id='test-component'}}`);
-    // eslint-disable-next-line typescript/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     await click(this.element.querySelector('#test-component')!);
   });
 
@@ -38,7 +38,7 @@ module('@eventListener', function(hooks) {
     this.owner.register('component:test-component', TestComponent);
 
     await render(hbs`{{test-component id='test-component'}}`);
-    // eslint-disable-next-line typescript/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     await click(this.element.querySelector('#test-component')!);
   });
 
@@ -56,6 +56,7 @@ module('@eventListener', function(hooks) {
           'callback was not called before the body of `didInsertElement`'
         );
       }
+
       @eventListener(
         t => {
           didCall = true;

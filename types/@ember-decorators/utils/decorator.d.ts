@@ -1,4 +1,3 @@
-import EmberObject from '@ember/object';
 import { Constructor } from 'ember-lifeline-decorators/utils/type-helpers';
 
 type FieldDecorator = PropertyDecorator;
@@ -103,7 +102,7 @@ export function decoratorWithParams<K extends Kind.Class, Args extends any[]>(
 
 interface FieldDescriptor {
   kind: Kind.Field;
-  key: string | Symbol;
+  key: string | symbol;
   placement: Placement;
   descriptor: PropertyDescriptor;
   initializer(): unknown;
@@ -116,7 +115,7 @@ interface FieldDecoratorReturnValue extends FieldDescriptor {
 
 interface MethodDescriptor {
   kind: Kind.Method;
-  key: string | Symbol;
+  key: string | symbol;
   placement: Placement;
   descriptor: PropertyDescriptor;
 }

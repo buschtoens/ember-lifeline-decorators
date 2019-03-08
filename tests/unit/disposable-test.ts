@@ -15,7 +15,7 @@ module('@disposable', function(hooks) {
       @disposable
       doStuff() {
         runCount++;
-        // eslint-disable-next-line typescript/no-use-before-define
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
         assert.equal(this, obj, 'context is correct');
       }
     }

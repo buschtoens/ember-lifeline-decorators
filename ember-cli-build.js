@@ -3,13 +3,13 @@
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
-  let app = new EmberAddon(defaults, {
+  const app = new EmberAddon(defaults, {
     // Add options here
   });
 
   const npmPackages = ['delay'];
   for (const pkg of npmPackages) {
-    const modulePath = require.resolve(pkg).match(/node_modules\/.*$/)[0];
+    const [modulePath] = require.resolve(pkg).match(/node_modules\/.*$/);
     app.import(modulePath, {
       using: [{ transformation: 'cjs', as: pkg.split('/', 2)[0] }]
     });

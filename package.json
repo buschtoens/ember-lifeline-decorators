@@ -83,6 +83,6 @@
     "configPath": "tests/dummy/config"
   },
   "peerDependencies": {
-    "ember-lifeline": "^3.0.0"
+    "ember-lifeline": "^4.0.0"
   }
 }

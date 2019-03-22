@@ -4822,10 +4822,10 @@ ember-export-application-global@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0-beta.7"
 
-ember-lifeline@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-4.0.0.tgz#c220bbfb6b1d4ad88f1caf2033af27133d51ec33"
-  integrity sha512-y92+iMUZvLD3Xc7ayKmZyo9vYu1LiC+LEqTQkiq5uEg8fyQjATdeDhk6jOB7HsNNGGuDbNi1t1oHUXQm5HW7gQ==
+ember-lifeline@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/ember-lifeline/-/ember-lifeline-4.1.3.tgz#896f26894ee6a987b5acd26d8e3ed890bc36d08b"
+  integrity sha512-y+S+XPlhZCfQD7zA3UYMEFuyDTKWRC+SNUEiwB33Gfq0a0tSR+8SRYeq8aSpi3fc0lznaHkvorcM4Jrm56jZSg==
   dependencies:
     ember-cli-babel "^7.1.3"
 

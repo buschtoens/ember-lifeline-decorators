@@ -27,7 +27,7 @@
   "dependencies": {
     "@ember-decorators/utils": "^5.1.4",
     "ember-auto-import": "^1.2.21",
-    "ember-cli-babel": "^7.5.0",
+    "ember-cli-babel": "^7.7.0",
     "ember-cli-typescript": "^2.0.0-rc.2",
     "patch-method": "^0.3.0"
   },

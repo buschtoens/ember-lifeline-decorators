@@ -1,33 +1,22 @@
-import {
-  MethodDescriptor,
-  MethodDecoratorReturnValue
-} from '@ember-decorators/utils/decorator';
-
-export default function privateAlias(
-  desc: MethodDescriptor,
+export default function privateAlias<Target extends object>(
+  target: Target,
+  key: keyof Target,
+  desc: PropertyDescriptor,
   makeValue: (alias: string) => any
-): MethodDecoratorReturnValue {
-  const privateKey = `__${String(desc.key)}-${Math.random()
+): PropertyDescriptor {
+  const privateKey = `__${String(key)}-${Math.random()
     .toString(36)
     .slice(2)}`;
 
+  Object.defineProperty(target, privateKey, {
+    ...desc,
+    configurable: false,
+    enumerable: false,
+    writable: false
+  });
+
   return {
     ...desc,
-    descriptor: {
-      ...desc.descriptor,
-      value: makeValue(privateKey)
-    },
-    extras: [
-      {
-        ...desc,
-        key: privateKey,
-        descriptor: {
-          ...desc.descriptor,
-          configurable: false,
-          enumerable: false,
-          writable: false
-        }
-      }
-    ]
+    value: makeValue(privateKey)
   };
 }

@@ -9562,10 +9562,10 @@ pascalcase@^0.1.1:
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
   integrity sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
 
-patch-method@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/patch-method/-/patch-method-0.3.0.tgz#dd4c014ba944554c805e211f0548b78e63dd5b31"
-  integrity sha512-F5CTVAXv3Wefnu4wGK+Cf8T6h1c61Wy98ADjx9WIspSlEMT/4mBQLYuXjaP4oRyjXBTguuS6A/4zgVPxRLR0qw==
+patch-method@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/patch-method/-/patch-method-0.3.1.tgz#42610c3699f1008fdf640a519edbcdf108087661"
+  integrity sha512-9W7kiT9YCdIKUBKIxD/8KAI/I0zuK6Z3pM63jPDalExMjxepSfvwLV5DGQa05MaoK2sfq9ODZUvj4CBTjKNqqQ==
 
 path-browserify@0.0.0:
   version "0.0.0"

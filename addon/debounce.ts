@@ -1,30 +1,33 @@
-import {
-  decoratorWithRequiredParams,
-  MethodDescriptor
-} from '@ember-decorators/utils/decorator';
+import { decoratorWithRequiredParams } from '@ember-decorators/utils/decorator';
 import { debounceTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
 import privateAlias from './utils/private-alias';
+import { Prototype } from './utils/type-helpers';
 
-export default decoratorWithRequiredParams(function(
-  desc: MethodDescriptor,
+export default decoratorWithRequiredParams(function debounce<
+  Target extends Prototype<EmberObject>
+>(
+  target: Target,
+  key: keyof Target,
+  desc: PropertyDescriptor,
   [wait, immediate = false]: [number, boolean?]
 ) {
   assert(
-    `The '@debounce' decorator may only be used on methods.`,
-    desc.kind === 'method'
+    `The '@debounce' decorator can only be used on methods.`,
+    typeof desc.value === 'function'
   );
 
-  return {
-    ...privateAlias(
-      desc,
-      alias =>
-        function(this: EmberObject, ...args: any[]) {
-          return debounceTask(this, alias, ...args, wait, immediate);
-        }
-    ),
-    finisher: hookDisposablesRunner
-  };
+  hookDisposablesRunner(target.constructor);
+
+  return privateAlias(
+    target,
+    key,
+    desc,
+    alias =>
+      function(this: InstanceType<typeof target.constructor>, ...args: any[]) {
+        return debounceTask(this, alias, ...args, wait, immediate);
+      }
+  );
 });

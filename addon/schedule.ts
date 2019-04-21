@@ -1,11 +1,9 @@
-import {
-  decoratorWithRequiredParams,
-  MethodDescriptor
-} from '@ember-decorators/utils/decorator';
+import { decoratorWithRequiredParams } from '@ember-decorators/utils/decorator';
 import { scheduleTask } from 'ember-lifeline';
 import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
+import { Prototype } from './utils/type-helpers';
 
 /**
  * Scheduling in the `afterRender` queue is bad for performance.
@@ -14,28 +12,25 @@ import EmberObject from '@ember/object';
  */
 type RunLoopQueue = Exclude<EmberRunQueues, 'afterRender'>;
 
-export default decoratorWithRequiredParams(function(
-  desc: MethodDescriptor,
+export default decoratorWithRequiredParams(function schedule<
+  Target extends Prototype<EmberObject>
+>(
+  target: Target,
+  _key: keyof Target,
+  desc: PropertyDescriptor,
   [queue]: [RunLoopQueue]
 ) {
   assert(
     `The '@schedule' decorator can only be used on methods.`,
-    desc.kind === 'method'
+    typeof desc.value === 'function'
   );
+
+  hookDisposablesRunner(target.constructor);
 
   return {
     ...desc,
-    descriptor: {
-      ...desc.descriptor,
-      value(this: EmberObject, ...args: any[]) {
-        return scheduleTask(
-          this,
-          queue,
-          desc.descriptor.value.bind(this, ...args),
-          ...args
-        );
-      }
-    },
-    finisher: hookDisposablesRunner
+    value(this: InstanceType<typeof target.constructor>, ...args: any[]) {
+      return scheduleTask(this, queue, desc.value.bind(this, ...args), ...args);
+    }
   };
 });

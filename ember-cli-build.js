@@ -7,13 +7,5 @@ module.exports = function(defaults) {
     // Add options here
   });
 
-  const npmPackages = ['delay'];
-  for (const pkg of npmPackages) {
-    const [modulePath] = require.resolve(pkg).match(/node_modules\/.*$/);
-    app.import(modulePath, {
-      using: [{ transformation: 'cjs', as: pkg.split('/', 2)[0] }]
-    });
-  }
-
   return app.toTree();
 };

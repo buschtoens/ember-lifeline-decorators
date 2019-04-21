@@ -22,7 +22,7 @@ module('@eventListener', function(hooks) {
       }
     }
 
-    const obj = new TestObject();
+    const obj = TestObject.create();
 
     assert.equal(runCount, 0, 'should not have run');
 

@@ -23,7 +23,7 @@ module('@throttle', function(hooks) {
       }
     }
 
-    const obj = new TestObject();
+    const obj = TestObject.create();
 
     obj.doStuff('arg1');
     obj.doStuff('arg2');

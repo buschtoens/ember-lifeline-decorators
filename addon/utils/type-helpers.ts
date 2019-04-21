@@ -8,6 +8,13 @@ export interface Constructor<T = unknown> {
 }
 
 /**
+ * Makeshift solution for a `Prototype` type, analogous to `Constructor`.
+ */
+export interface Prototype<T> {
+  constructor: Constructor<T>;
+}
+
+/**
  * All values on the object `Obj`.
  */
 export type Values<Obj> = Obj[keyof Obj];

@@ -22,7 +22,7 @@ module('@schedule', function(hooks) {
       }
     }
 
-    const obj = new TestObject();
+    const obj = TestObject.create();
 
     obj.doStuff('arg1');
 

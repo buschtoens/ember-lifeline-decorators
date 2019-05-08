@@ -24,14 +24,6 @@ itself:
 ember install ember-lifeline-decorators ember-lifeline
 ```
 
-If you are _not_ using TypeScript, in order for [ember-cli-babel](https://github.com/babel/ember-cli-babel) to understand the `@decorator` syntax, you at least also need to install [`@ember-decorators/babel-transforms`](https://github.com/ember-decorators/babel-transforms). Instead of that you can also install the [`ember-decorators`](https://github.com/ember-decorators/ember-decorators) meta package:
-
-```bash
-ember install ember-decorators
-# or
-ember install @ember-decorators/babel-transforms
-```
-
 ## Usage
 
 You don't need to register `runDisposables(this)` in the `willDestroy` hook. The

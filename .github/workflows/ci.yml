@@ -38,7 +38,7 @@ jobs:
       - name: Lint
         run: yarn lint
       - name: Browser Tests
-        run: yarn test:ember
+        run: yarn test
 
   test-old-dependencies:
     name: Oldest Supported Env

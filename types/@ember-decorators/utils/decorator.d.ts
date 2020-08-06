@@ -17,6 +17,7 @@
  */
 export function decoratorWithParams<
   Params extends any[],
+  // eslint-disable-next-line @typescript-eslint/ban-types
   Target extends object
 >(
   fn: (
@@ -47,6 +48,7 @@ export function decoratorWithParams<
  */
 export function decoratorWithRequiredParams<
   Params extends any[],
+  // eslint-disable-next-line @typescript-eslint/ban-types
   Target extends object
 >(
   fn: (

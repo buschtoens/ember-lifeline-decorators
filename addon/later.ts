@@ -1,8 +1,10 @@
 import { decoratorWithRequiredParams } from '@ember-decorators/utils/decorator';
-import { runTask } from 'ember-lifeline';
-import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
+
+import { runTask } from 'ember-lifeline';
+
+import hookDisposablesRunner from './hook-disposables-runner';
 import { Prototype } from './utils/type-helpers';
 
 export default decoratorWithRequiredParams(function later<

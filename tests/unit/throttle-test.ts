@@ -1,41 +1,50 @@
-import EmberObject from '@ember/object';
+/* eslint-disable qunit/no-commented-tests */
 import { module, test } from 'qunit';
+
+import EmberObject from '@ember/object';
+
 import { throttle } from 'ember-lifeline-decorators';
+
 import delay from 'delay';
+
 import inRunLoop from 'dummy/tests/helpers/in-run-loop';
 
-module('@throttle', function(hooks) {
+module('@throttle', function (hooks) {
   inRunLoop(hooks);
 
-  test('can decorate methods', async function(assert) {
+  test('can decorate methods', async function (assert) {
     assert.expect(4);
 
     let runCount = 0;
-    let runArg: string;
+    let runArgument: string;
 
     class TestObject extends EmberObject {
       @throttle(5)
-      doStuff(arg: string) {
+      doStuff(argument: string) {
         runCount++;
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        assert.equal(this, obj, 'context is correct');
-        runArg = arg;
+        assert.strictEqual(this, object, 'context is correct');
+        runArgument = argument;
       }
     }
 
-    const obj = TestObject.create();
+    const object = TestObject.create();
 
-    obj.doStuff('arg1');
-    obj.doStuff('arg2');
-    obj.doStuff('arg3');
+    object.doStuff('arg1');
+    object.doStuff('arg2');
+    object.doStuff('arg3');
 
-    assert.equal(runCount, 1, 'should have run once');
+    assert.strictEqual(runCount, 1, 'should have run once');
 
     await delay(10);
 
-    assert.equal(runCount, 1, 'should have run only once');
+    assert.strictEqual(runCount, 1, 'should have run only once');
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    assert.equal(runArg!, 'arg1', 'should run the task with the first arg');
+    assert.strictEqual(
+      runArgument!,
+      'arg1',
+      'should run the task with the first arg'
+    );
   });
 
   // test('debounceTask can be canceled', function(assert) {

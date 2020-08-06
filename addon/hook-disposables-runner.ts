@@ -1,5 +1,7 @@
 import EmberObject from '@ember/object';
+
 import { runDisposables } from 'ember-lifeline';
+
 import { Constructor } from './utils/type-helpers';
 
 const hookedWithDisposables = new WeakSet<Constructor<EmberObject>>();
@@ -16,7 +18,7 @@ export default function hookDisposablesRunner(
     prototype,
     'willDestroy'
   );
-  prototype.willDestroy = function(...args: any[]) {
+  prototype.willDestroy = function (...args: any[]) {
     runDisposables(this);
     if (originalMethod) {
       return originalMethod.value.apply(this, args);

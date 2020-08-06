@@ -1,14 +1,17 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
-import { eventListener } from 'ember-lifeline-decorators';
+import { setupRenderingTest } from 'ember-qunit';
+import { module, test } from 'qunit';
+
 import Component from '@ember/component';
 
-module('@eventListener', function(hooks) {
+import { eventListener } from 'ember-lifeline-decorators';
+
+import hbs from 'htmlbars-inline-precompile';
+
+module('@eventListener', function (hooks) {
   setupRenderingTest(hooks);
 
-  test('it can be used on a component', async function(assert) {
+  test('it can be used on a component', async function (assert) {
     assert.expect(1);
 
     class TestComponent extends Component {
@@ -25,7 +28,7 @@ module('@eventListener', function(hooks) {
     await click(this.element.querySelector('#test-component')!);
   });
 
-  test('it accepts `this.element` as target', async function(assert) {
+  test('it accepts `this.element` as target', async function (assert) {
     assert.expect(1);
 
     class TestComponent extends Component {
@@ -42,7 +45,7 @@ module('@eventListener', function(hooks) {
     await click(this.element.querySelector('#test-component')!);
   });
 
-  test('it calls the callback after `didInsertElement`', async function(assert) {
+  test('it calls the callback after `didInsertElement`', async function (assert) {
     assert.expect(1);
 
     let didCall = false;

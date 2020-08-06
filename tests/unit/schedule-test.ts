@@ -1,38 +1,46 @@
-import EmberObject from '@ember/object';
+/* eslint-disable qunit/no-commented-tests */
 import { module, test } from 'qunit';
+
+import EmberObject from '@ember/object';
+
 import { schedule } from 'ember-lifeline-decorators';
+
 import inRunLoop, { next } from 'dummy/tests/helpers/in-run-loop';
 
-module('@schedule', function(hooks) {
+module('@schedule', function (hooks) {
   inRunLoop(hooks);
 
-  test('can decorate methods', async function(assert) {
+  test('can decorate methods', async function (assert) {
     assert.expect(4);
 
     let runCount = 0;
-    let runArg: string;
+    let runArgument: string;
 
     class TestObject extends EmberObject {
       @schedule('actions')
-      doStuff(arg: string) {
+      doStuff(argument: string) {
         runCount++;
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        assert.equal(this, obj, 'context is correct');
-        runArg = arg;
+        assert.strictEqual(this, object, 'context is correct');
+        runArgument = argument;
       }
     }
 
-    const obj = TestObject.create();
+    const object = TestObject.create();
 
-    obj.doStuff('arg1');
+    object.doStuff('arg1');
 
-    assert.equal(runCount, 0, 'should not have run');
+    assert.strictEqual(runCount, 0, 'should not have run');
 
     next();
 
-    assert.equal(runCount, 1, 'should have run');
+    assert.strictEqual(runCount, 1, 'should have run');
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    assert.equal(runArg!, 'arg1', 'should run the task with the arg');
+    assert.strictEqual(
+      runArgument!,
+      'arg1',
+      'should run the task with the arg'
+    );
   });
 
   // test('debounceTask can be canceled', function(assert) {

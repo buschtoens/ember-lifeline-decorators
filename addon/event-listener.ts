@@ -1,20 +1,26 @@
 import { decoratorWithRequiredParams } from '@ember-decorators/utils/decorator';
-import { addEventListener } from 'ember-lifeline';
-import hookDisposablesRunner from './hook-disposables-runner';
+import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
+
+import { addEventListener } from 'ember-lifeline';
+
 import { afterMethod } from 'patch-method';
-import Component from '@ember/component';
+
+import hookDisposablesRunner from './hook-disposables-runner';
 import { Prototype, Constructor } from './utils/type-helpers';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-empty-function
 function NOOP(): void {}
 
 function collapseProto(target: Prototype<EmberObject>) {
   // We must collapse the superclass prototype to make sure that the `actions`
   // object will exist. Since collapsing doesn't generally happen until a class is
   // instantiated, we have to do it manually.
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   if (typeof target.constructor.proto === 'function') {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     target.constructor.proto();
   }
@@ -29,6 +35,7 @@ export default decoratorWithRequiredParams(function eventListener<
   [eventTarget, eventName, options]: [
     EventTarget | ((this: Component, obj: Component) => EventTarget),
     string,
+    // eslint-disable-next-line @typescript-eslint/ban-types
     object?
   ]
 ): PropertyDescriptor {
@@ -45,9 +52,10 @@ export default decoratorWithRequiredParams(function eventListener<
     typeof target.constructor.prototype.didInsertElement === 'function'
       ? 'didInsertElement'
       : 'init',
-    function() {
+    function () {
       addEventListener(
         this,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore https://github.com/ember-lifeline/ember-lifeline/pull/249
         typeof eventTarget === 'function'
           ? eventTarget.call(this, this)

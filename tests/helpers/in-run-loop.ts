@@ -6,11 +6,11 @@ import { begin, end } from '@ember/runloop';
  * @param {object} hooks QUnit Hooks
  */
 export default function inRunLoop(hooks: NestedHooks): void {
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     begin();
   });
 
-  hooks.afterEach(function() {
+  hooks.afterEach(function () {
     end();
   });
 }

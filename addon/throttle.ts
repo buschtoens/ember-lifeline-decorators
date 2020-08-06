@@ -1,8 +1,10 @@
 import { decoratorWithRequiredParams } from '@ember-decorators/utils/decorator';
-import { throttleTask } from 'ember-lifeline';
-import hookDisposablesRunner from './hook-disposables-runner';
 import { assert } from '@ember/debug';
 import EmberObject from '@ember/object';
+
+import { throttleTask } from 'ember-lifeline';
+
+import hookDisposablesRunner from './hook-disposables-runner';
 import privateAlias from './utils/private-alias';
 import { Prototype } from './utils/type-helpers';
 
@@ -26,7 +28,7 @@ export default decoratorWithRequiredParams(function throttle<
     key,
     desc,
     alias =>
-      function(this: InstanceType<typeof target.constructor>, ...args: any[]) {
+      function (this: InstanceType<typeof target.constructor>, ...args: any[]) {
         return throttleTask(this, alias, ...args, spacing, immediate);
       }
   );

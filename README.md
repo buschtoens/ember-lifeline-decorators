@@ -198,17 +198,19 @@ export default class ExampleComponent extends Component {
 [`addEventListener`][addeventlistener] / [`EventTarget.addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener)
 
 > ⚠️👉 In almost all scenarios it is much more sensible to use
-> [`ember-on-modifier`][ember-on-modifier].
+> [`ember-on-modifier`][ember-on-modifier] or
+> [`ember-on-helper`][ember-on-helper].
 
-[ember-on-modifier]: https://github.com/buschtoens/ember-on-modifier#readme
+[ember-on-modifier]: https://github.com/ember-polyfills/ember-on-modifier#readme
+[ember-on-helper]: https://github.com/buschtoens/ember-on-helper#readme
 
 Automatically calls this method whenever the given event is fired on `target`.
 
 ```js
-import Component from '@ember/component';
+import Service from '@ember/service';
 import { eventListener } from 'ember-lifeline-decorators';
 
-export default class ExampleComponent extends Component {
+export default class ScrollService extends Service {
   @eventListener(window, 'scroll', { passive: true })
   function onScroll(event) {
     // ...

@@ -4,7 +4,6 @@ import EmberObject from '@ember/object';
 
 import { runTask } from 'ember-lifeline';
 
-import hookDisposablesRunner from './hook-disposables-runner';
 import { Prototype } from './utils/type-helpers';
 
 export default decoratorWithRequiredParams(function later<
@@ -19,8 +18,6 @@ export default decoratorWithRequiredParams(function later<
     `The '@later' decorator can only be used on methods.`,
     typeof desc.value === 'function'
   );
-
-  hookDisposablesRunner(target.constructor);
 
   return {
     ...desc,

@@ -4,7 +4,6 @@ import EmberObject from '@ember/object';
 
 import { scheduleTask } from 'ember-lifeline';
 
-import hookDisposablesRunner from './hook-disposables-runner';
 import { Prototype } from './utils/type-helpers';
 
 /**
@@ -26,8 +25,6 @@ export default decoratorWithRequiredParams(function schedule<
     `The '@schedule' decorator can only be used on methods.`,
     typeof desc.value === 'function'
   );
-
-  hookDisposablesRunner(target.constructor);
 
   return {
     ...desc,

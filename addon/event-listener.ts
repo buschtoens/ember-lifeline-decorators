@@ -7,7 +7,6 @@ import { addEventListener } from 'ember-lifeline';
 
 import { afterMethod } from 'patch-method';
 
-import hookDisposablesRunner from './hook-disposables-runner';
 import { Prototype, Constructor } from './utils/type-helpers';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-empty-function
@@ -45,7 +44,6 @@ export default decoratorWithRequiredParams(function eventListener<
   );
 
   collapseProto(target);
-  hookDisposablesRunner(target.constructor);
 
   afterMethod(
     target.constructor as Constructor<Component>,

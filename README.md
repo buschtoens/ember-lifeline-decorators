@@ -27,9 +27,6 @@ ember install ember-lifeline-decorators ember-lifeline
 
 ## Usage
 
-You don't need to register `runDisposables(this)` in the `willDestroy` hook. The
-decorators do this for you.
-
 ### Available decorators
 
 | Decorator                              | ember-lifeline                             | Description                                            |

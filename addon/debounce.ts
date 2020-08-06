@@ -4,7 +4,6 @@ import EmberObject from '@ember/object';
 
 import { debounceTask } from 'ember-lifeline';
 
-import hookDisposablesRunner from './hook-disposables-runner';
 import privateAlias from './utils/private-alias';
 import { Prototype } from './utils/type-helpers';
 
@@ -20,8 +19,6 @@ export default decoratorWithRequiredParams(function debounce<
     `The '@debounce' decorator can only be used on methods.`,
     typeof desc.value === 'function'
   );
-
-  hookDisposablesRunner(target.constructor);
 
   return privateAlias(
     target,

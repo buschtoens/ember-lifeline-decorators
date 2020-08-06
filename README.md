@@ -5,7 +5,8 @@
 [![Download Total](https://img.shields.io/npm/dt/ember-lifeline-decorators.svg)](http://badge.fury.io/js/ember-lifeline-decorators)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-lifeline-decorators.svg)](https://emberobserver.com/addons/ember-lifeline-decorators)
 [![Ember Versions](https://img.shields.io/badge/Ember.js%20Versions-%5E2.12%20%7C%7C%20%5E3.0-brightgreen.svg)](https://travis-ci.org/buschtoens/ember-lifeline-decorators)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)  
+[![Dependabot enabled](https://img.shields.io/badge/dependabot-enabled-blue.svg?logo=dependabot)](https://dependabot.com/)
 [![dependencies](https://img.shields.io/david/buschtoens/ember-lifeline-decorators.svg)](https://david-dm.org/buschtoens/ember-lifeline-decorators)
 [![devDependencies](https://img.shields.io/david/dev/buschtoens/ember-lifeline-decorators.svg)](https://david-dm.org/buschtoens/ember-lifeline-decorators)
 
@@ -32,7 +33,7 @@ decorators do this for you.
 ### Available decorators
 
 | Decorator                              | ember-lifeline                             | Description                                            |
-| -------------------------------------- | ------------------------------------------ | ------------------------------------------------------ |
+|----------------------------------------|--------------------------------------------|--------------------------------------------------------|
 | **[`@later`](#later)**                 | [`runTask`][runtask]                       | Delay the execution of this method                     |
 | **[`@schedule`](#schedule)**           | [`scheduleTask`][scheduletask]             | Schedule this method on a run loop queue               |
 | **[`@debounce`](#debounce)**           | [`debounceTask`][debouncetask]             | Debounce this method                                   |

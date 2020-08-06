@@ -1,6 +1,6 @@
 # ember-lifeline-decorators
 
-[![Build Status](https://travis-ci.org/buschtoens/ember-lifeline-decorators.svg)](https://travis-ci.org/buschtoens/ember-lifeline-decorators)
+[![CI](https://github.com/buschtoens/ember-lifeline-decorators/workflows/CI/badge.svg)](https://github.com/buschtoens/ember-lifeline-decorators/actions)
 [![npm version](https://badge.fury.io/js/ember-lifeline-decorators.svg)](http://badge.fury.io/js/ember-lifeline-decorators)
 [![Download Total](https://img.shields.io/npm/dt/ember-lifeline-decorators.svg)](http://badge.fury.io/js/ember-lifeline-decorators)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-lifeline-decorators.svg)](https://emberobserver.com/addons/ember-lifeline-decorators)

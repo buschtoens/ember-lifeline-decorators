@@ -35,7 +35,7 @@ ember install ember-lifeline-decorators ember-lifeline
 | **[`@schedule`](#schedule)**           | [`scheduleTask`][scheduletask]             | Schedule this method on a run loop queue               |
 | **[`@debounce`](#debounce)**           | [`debounceTask`][debouncetask]             | Debounce this method                                   |
 | **[`@throttle`](#throttle)**           | [`throttleTask`][throttletask]             | Throttle this method                                   |
-| **[`@disposable`](#disposable)**       | [`registerDisposable`][registerdisposable] | Automatically execute this method during `willDestroy` |
+| **[`@destructor`](#destructor)**       | [`registerDisposable`][registerdisposable] | Automatically execute this method during `willDestroy` |
 | **[`@eventListener`](#eventListener)** | [`addEventListener`][addeventlistener]     | Execute this method when a DOM event is fired          |
 
 [runtask]: https://github.com/ember-lifeline/ember-lifeline#runtask
@@ -153,6 +153,36 @@ export default class ExampleComponent extends Component {
   // and then elsewhere
   hereIsMyNumber() {
     this.callMeMaybe();
+  }
+}
+```
+
+#### `@destructor`
+
+[`registerDisposable`][registerdisposable] / [`import { registerDestructor } from '@ember/destroyable';`](https://emberjs.github.io/rfcs/0580-destroyables.html#registerdestructor)
+
+Calls this method during destruction of the object.
+
+```js
+import { action } from '@ember/object';
+import Component from '@glimemr/component';
+import { destructor } from 'ember-lifeline-decorators';
+
+export default class ExampleComponent extends Component {
+  constructor(owner, args) {
+    super(owner, args);
+
+    window.addEventListener('resize', this.onResize);
+  }
+
+  @destructor
+  unregister() {
+    window.removeEventListener('resize', this.onResize);
+  }
+
+  @action
+  onResize(event) {
+    // ...
   }
 }
 ```

@@ -18,9 +18,8 @@
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint --ext js,ts .",
     "lint:types": "tsc",
-    "prepublishOnly": "ember ts:precompile",
-    "postpublish": "ember ts:clean",
-    "semantic-release": "semantic-release",
+    "prepack": "ember ts:precompile",
+    "postpack": "ember ts:clean",
     "start": "ember serve",
     "test": "ember test",
     "test:all": "ember try:each"

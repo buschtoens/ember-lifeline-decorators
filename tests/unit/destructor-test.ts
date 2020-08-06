@@ -2,11 +2,11 @@ import { module, test } from 'qunit';
 
 import EmberObject from '@ember/object';
 
-import { disposable } from 'ember-lifeline-decorators';
+import { destructor } from 'ember-lifeline-decorators';
 
 import inRunLoop, { next } from 'dummy/tests/helpers/in-run-loop';
 
-module('@disposable', function (hooks) {
+module('@destructor', function (hooks) {
   inRunLoop(hooks);
 
   test('can decorate methods', async function (assert) {
@@ -15,7 +15,7 @@ module('@disposable', function (hooks) {
     let runCount = 0;
 
     class TestObject extends EmberObject {
-      @disposable
+      @destructor
       doStuff() {
         runCount++;
         // eslint-disable-next-line @typescript-eslint/no-use-before-define

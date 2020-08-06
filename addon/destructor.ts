@@ -1,14 +1,13 @@
 import { decoratorWithParams } from '@ember-decorators/utils/decorator';
 import { assert } from '@ember/debug';
+import { registerDestructor } from '@ember/destroyable';
 import EmberObject from '@ember/object';
-
-import { registerDisposable } from 'ember-lifeline';
 
 import { afterMethod } from 'patch-method';
 
 import { Prototype } from './utils/type-helpers';
 
-export default decoratorWithParams(function disposable<
+export default decoratorWithParams(function destructor<
   Target extends Prototype<EmberObject>
 >(
   target: Target,
@@ -21,8 +20,8 @@ export default decoratorWithParams(function disposable<
   );
 
   afterMethod(target.constructor, 'init', function () {
-    // `.bind` is required because ember-lifeline does not set the correct context
-    registerDisposable(this, desc.value.bind(this));
+    // `.bind` is required because `@ember/destroyable` does not set the correct context
+    registerDestructor(this, desc.value.bind(this));
   });
 
   return desc;
